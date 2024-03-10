@@ -6,8 +6,9 @@ const port = 3000;
 const dt = require('./routes/myfirstmodule.js');
 
 var morgan = require('morgan');
-const { log } = require('console');
 
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 //http logger
 app.use(morgan('combined'))
