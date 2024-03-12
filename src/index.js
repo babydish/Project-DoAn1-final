@@ -6,6 +6,7 @@ const port = 3000;
 const dt = require('./routes/myfirstmodule.js');
 
 var morgan = require('morgan');
+const { log } = require('console');
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,6 +29,18 @@ app.get('/time', (req, res) => {
 app.get('/', (req, res) => { // req = request , res= respond ,req chứa thông liên quan yêu cầu gửi đi
     res.render('home'); //render home thi se dua home vao body
 });
+
+
+app.get('/search', (req, res) => {
+    console.log(req.query.q);
+    res.render('search')
+});
+
+app.set('title', 'GeeksforGeeks');
+
+app.get('/title', (req, res) => {
+    res.send(app.get('title'));
+})
 
 app.listen(port, () => {
 
