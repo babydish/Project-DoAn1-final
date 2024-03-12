@@ -36,11 +36,10 @@ app.get('/search', (req, res) => {
     res.render('search')
 });
 
-app.set('title', 'GeeksforGeeks');
 
-app.get('/title', (req, res) => {
-    res.send(app.get('title'));
-})
+app.get('/list', (req, res) => {
+    res.render('list_of_product', { layout: 'list_product' });
+});
 
 app.listen(port, () => {
 
