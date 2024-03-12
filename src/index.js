@@ -25,7 +25,7 @@ app.get('/time', (req, res) => {
 });
 
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { // req = request , res= respond ,req chứa thông liên quan yêu cầu gửi đi
     res.render('home'); //render home thi se dua home vao body
 });
 
