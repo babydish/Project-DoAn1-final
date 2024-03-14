@@ -4,18 +4,18 @@ const { engine } = require('express-handlebars'); // destructuring in js
 const app = express();
 const port = 3000;
 
-
 const route = require('./routes');
-
 var morgan = require('morgan');
+const db = require('./config/db');
+
+// connect db
+db.connect();
 
 
 app.use(express.urlencoded({ // body-parser ; middleware ; get data from client
     extended: true
 }));
 app.use(express.json()); // get date from js
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 //http logger
@@ -30,6 +30,5 @@ route(app);
 
 
 app.listen(port, () => {
-
     console.log(`Example app listening on port ${port}`);
 });
