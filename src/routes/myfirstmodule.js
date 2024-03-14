@@ -1,3 +1,0 @@
-exports.myDate = () => {
-    return Date()
-}
