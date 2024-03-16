@@ -3,7 +3,7 @@ const router = express.Router();
 
 const noteControllers = require('../app/controllers/NoteControllers');
 
-router.use('/add_note', noteControllers.add_note)
-router.use('/', noteControllers.index)
+router.get('/add_note', noteControllers.add_note)
+router.get('/', noteControllers.index)
 
 module.exports = router;
