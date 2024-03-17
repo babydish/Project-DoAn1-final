@@ -1,5 +1,5 @@
 const YourSkill = require('../models/Courses');
-const { multipleMongooseToObject } = require('../../ultill/mongoose')
+const { multipleMongooseToObject, mongooseToObject } = require('../../ultill/mongoose');
 
 
 class SiteController {
@@ -21,12 +21,20 @@ class SiteController {
     index(req, res, next) {
         YourSkill.find({})
             .then(yourskills => {
+
+
+
                 // yourskills = yourskills.map(yourskill => yourskill.toObject())
                 res.render('home', {
                     yourskills: multipleMongooseToObject(yourskills)
+
                 })
+
             })
-            .catch(next)
+            .catch(error => {
+                // Xử lý lỗi ở đây
+                next(error); // Chuyển lỗi đến middleware xử lý lỗi tiếp theo
+            });
     }
 }
 

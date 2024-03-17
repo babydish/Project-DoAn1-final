@@ -5,7 +5,7 @@ class NoteControllers {
 
     }
     add_note(req, res) {
-        res.send('vao day lam gi');
+        res.send('hello')
     }
 }
 
