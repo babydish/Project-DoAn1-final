@@ -18,7 +18,9 @@ class SiteController {
     //         res.status(500).json({ message: "Internal Server Error" });
     //     }
     // }
+
     index(req, res, next) {
+        console.log(YourSkill);
         YourSkill.find({})
             .then(yourskills => {
 

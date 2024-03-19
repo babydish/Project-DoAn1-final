@@ -11,5 +11,4 @@ const YourSkill = new mongoose.Schema({
 
 
 const YourSkills = mongoose.model('YourSkill', YourSkill);
-
 module.exports = YourSkills;
