@@ -20,7 +20,7 @@ class SiteController {
     // }
 
     index(req, res, next) {
-        console.log(YourSkill);
+
         YourSkill.find({})
             .then(yourskills => {
 
