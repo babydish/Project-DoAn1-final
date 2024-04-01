@@ -3,7 +3,7 @@ const siteRouter = require('./site');
 const noteRouter = require('./note');
 const profileRouter = require('./profile');
 const courseRouter = require('./courses');
-
+const meRouter = require('./me');
 
 function route(app) {
     app.use('/note', noteRouter);
@@ -19,10 +19,7 @@ function route(app) {
     }); */
     app.use('/profile', profileRouter);
     app.use('/course', courseRouter);
-
-
-
-
+    app.use('/me', meRouter);
 
 }
 

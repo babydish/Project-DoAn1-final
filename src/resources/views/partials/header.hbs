@@ -7,23 +7,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 smb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../">Home</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://scr.vn/wp-content/uploads/2020/07/avt-%C4%91%E1%BA%B9p-cho-nam.jpg" alt=""
+                            class="user-avatar">
+                        Tuan Anh
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <a class="nav-link" href="http://localhost:3000/course/create">Create Profile</a>
+                        <a class="nav-link" href="http://localhost:3000/profile">Check Profile</a>
+                        <a class="nav-link" href="http://localhost:3000/me/stored/courses">Khoá Học Của Tôi</a>
+                        <a class="nav-link" href="http://localhost:3000/profile">Logout</a>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../course/create">Create Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../profile">Check Profile</a>
-                </li>
-
-
-
             </ul>
+
+
+
+
+
+
+
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
         </div>
+
     </div>
 </nav>

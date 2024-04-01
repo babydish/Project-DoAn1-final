@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express');
 const { engine } = require('express-handlebars'); // destructuring in js 
 const app = express();
-const port = 3000;
+const port = 3000 || 7000;
 
 const route = require('./routes');
 var morgan = require('morgan');
@@ -27,6 +27,7 @@ app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources/views'))
 
 route(app);
+
 
 
 app.listen(port, () => {
