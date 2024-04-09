@@ -3,6 +3,13 @@ const { multipleMongooseToObject, mongooseToObject } = require('../../ultill/mon
 
 
 class CoursesController {
+
+    // [DELETE] /course/:id (delete)
+    delete(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+
+    }
     // [POST] /course/:id (update)
     update(req, res, next) {
         Course.updateOne({ _id: req.params.id }, req.body) // condition,object . _id: req.params.id : _id: database, req.params.name_route
@@ -49,7 +56,7 @@ class CoursesController {
         // luu data vao database
         course.save()
             .then(() => res.redirect('/'))
-            .catch(error => { })
+            .catch(error => { res.send(error) })
     }
     index(req, res, next) {
         res.render('course');

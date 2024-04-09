@@ -1,5 +1,5 @@
 <div class="mt-4">
-    <form method="post" action="/course/{{course._id}}">
+    <form method="post" action="/course/{{course._id}}/edited">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" value="{{course.name}}">
@@ -21,7 +21,7 @@
             <input type="text" class="form-control" id="description" name="description" value="{{course.description}}">
 
         </div>
-        <button type="submit" class="btn btn-primary">Them ho so</button>
+        <button type="submit" class="btn btn-primary">sua ho so</button>
 
     </form>
 </div>

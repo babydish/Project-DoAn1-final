@@ -6,8 +6,8 @@ const coursesController = require('../app/controllers/CourseController');
 
 router.get('/create', coursesController.create); // tinh chat cua route la match tu tren xuong match den dau thi dung o do
 router.post('/store', coursesController.store);
-router.get('/:slug', coursesController.show);
+router.post('/:id', coursesController.delete);
 router.get('/:id/edit', coursesController.edit);
-router.post('/:id', coursesController.update);
-router.get('/', coursesController.index)
+router.post('/:id/edited', coursesController.update);
+router.get('/', coursesController.index);
 module.exports = router;
