@@ -1,0 +1,30 @@
+<div class="mt-4">
+
+    <form method="post" action="/profile/{{information_id._id}}/edited">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="{{information_id.name}}">
+
+        </div>
+        <div class="form-group">
+            <label for="skill">Email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="{{information_id.email}}">
+
+        </div>
+        <div class="form-group">
+            <label for="skill_want_to_learn">Skill want to skill_want_to_learn</label>
+            <input type="text" class="form-control" id="skill_want_to_learn" name="skill_want_to_learn"
+                placeholder="{{information_id.skill_want_to_learn}}">
+
+        </div>
+        <div class="form-group">
+            <label for="skill_want_to_learn">Avatar</label>
+            <input type="text" class="form-control" id="avatar" name="avatar" placeholder="{{information_id.avatar}}">
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary mt-3">Edit</button>
+
+    </form>
+</div>

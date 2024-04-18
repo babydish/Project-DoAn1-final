@@ -1,18 +1,15 @@
-const mongoose = require('mongoose')
-const { use } = require('../../routes/news')
+const mongoose = require('mongoose');
+
 
 async function connect() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/SkillSwap_DEV', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log('connect successfully');
+        await mongoose.connect('mongodb://localhost:27017/SkillSwap_DEV');
+        console.log('connected successfully');
+    }
+    catch (error) {
 
-
-    } catch (error) {
         console.log('error');
     }
 }
 
-module.exports = { connect }
+module.exports = { connect };
