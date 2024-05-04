@@ -1,22 +1,30 @@
-const User = require('../models/User');
+const User = require('../models/Profile');
 
 class UserController {
-    index(req, res, next) {
-        User.find().lean()
-            .then((information_user) => {
-                res.json(information_user)
-            })
-            .catch(next); // Xử lý lỗi
-    }
-    information(req, res, next) {
-        User.findById(req.params.id).lean()
-            .then(information => {
-                res.json(information)
-            })
-            .catch(error => (res.send(error)))
 
+    logout(req, res, next) {
+        req.session.destroy(error => {
+            if (error) {
+                console.error("Error destroying session:", error);
+                res.status(500).send("Error destroying session");
+            } else {
+                res.redirect('/'); // Chuyển hướng người dùng sau khi session đã bị hủy
+            }
+        });
     }
 
+
+    // [POST] /user/login
+    logged(req, res, next) {
+        const user = req.session.user;
+        res.locals.userData = user;
+        res.redirect('/');
+    }
+
+
+    login(req, res, next) {
+        res.render('user/login')
+    }
 
 }
 

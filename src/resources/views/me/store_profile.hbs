@@ -4,7 +4,7 @@
             <tr>
                 <th scope="col">Tên</th>
                 <th scope="col">Email</th>
-
+                <th scope="col">Kĩ Năng Đã Có</th>
                 <th scope="col">Kĩ Năng Muốn Học</th>
                 <th></th>
             </tr>
@@ -15,6 +15,7 @@
 
                 <th scope="row">{{this.name}}</th>
                 <td>{{this.email}}</td>
+                <td>{{this.current_skills}}</td>
 
                 <td>{{this.skill_want_to_learn}}</td>
                 <td>
@@ -70,15 +71,6 @@
             deleteCourseForm.action = '/profile/' + courseID + '/delete';
             deleteCourseForm.submit();
         }
-
-
-
-
-
-
-
-
-
 
 
     })

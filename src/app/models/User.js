@@ -7,7 +7,7 @@ const User = new mongoose.Schema({
     email: { type: String },
     password: { type: String },
     current_skills: { type: [String] }, // Sử dụng kiểu Array để lưu mảng các kỹ năng
-    desired_skills: { type: [String] },
+    skill_want_to_learn: { type: [String] },
     role: [
         {
             type: mongoose.Schema.Types.ObjectId,

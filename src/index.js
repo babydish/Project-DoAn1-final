@@ -1,12 +1,19 @@
 const path = require('path')
 const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const { engine } = require('express-handlebars'); // destructuring in js 
 const app = express();
-const cors = require("cors");
 const port = 5000;
 const connect_db = require('./config/db');
 
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+}));
 
+app.use(cookieParser());
 // connect db
 connect_db.connect();
 
@@ -32,10 +39,8 @@ app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources/views'))
 
-// cors
 
 route(app);
-
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

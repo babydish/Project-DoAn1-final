@@ -8,8 +8,9 @@ const Profile = new mongoose.Schema({
     name: { type: String },
     password: { type: String },
     skill_want_to_learn: { type: String },
+    current_skills: { type: String },
     avatar: { type: String },
-    skill_already_processed: { type: String }
+    role: { type: String },
 
 }, { timestamps: true });
 

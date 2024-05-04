@@ -14,7 +14,7 @@
                         </div>
                         <div class="ms-3" style="margin-top: 130px;">
                             <h5>{{information.name}}</h5>
-                            <p>New York</p>
+                            <p>{{information.email}}</p>
                         </div>
                     </div>
                     <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -35,15 +35,13 @@
                     </div>
                     <div class="card-body p-4 text-black">
                         <div class="mb-5">
-                            <p class="lead fw-normal mb-1">About</p>
+                            <p class="lead fw-normal mb-1">Current Skill</p>
                             <div class="p-4" style="background-color: #f8f9fa;">
-                                <p class="font-italic mb-1">Web Developer</p>
-                                <p class="font-italic mb-1">Lives in New York</p>
-                                <p class="font-italic mb-0">Photographer</p>
+                                <p class="font-italic mb-1">{{information.current_skills}}</p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <p class="lead fw-normal mb-0">Recent photos</p>
+                            <p class="lead fw-normal mb-0">Các Khóa Học Của {{information.name}}</p>
                             <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
                         </div>
                         <div class="row g-2">
