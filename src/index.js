@@ -3,8 +3,14 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { engine } = require('express-handlebars'); // destructuring in js 
+const { Server } = require("socket.io");
+const { createServer } = require('node:http');
 const app = express();
-const port = 5000;
+const Message = require('./app/models/Message');
+
+const server = createServer(app);
+const io = new Server(server);
+const userNamespace = io.of('/user-namespace');
 const connect_db = require('./config/db');
 
 app.use(session({
@@ -12,6 +18,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
 
 app.use(cookieParser());
 // connect db
@@ -42,8 +49,47 @@ app.set('views', path.join(__dirname, 'resources/views'))
 
 route(app);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+
+let socketsConnected = new Set();
+let users = {};
+
+io.on('connection', onConnected)
+// socket.on('chat message', (msg) => {
+//     io.emit('chat message', msg);
+// });
+
+function onConnected(socket) {
+
+
+    socketsConnected.add(socket.id);
+    io.emit('clients-total', socketsConnected.size)
+    socket.on('disconnect', () => {
+        console.log('Socket disconnected', socket.id)
+        socketsConnected.delete(socket.id)
+        io.emit('clients-total', socketsConnected.size)
+    });
+    socket.on('chat', userId => {
+        users[userId] = socket.id;
+        console.log(users[userId]);
+
+    })
+    socket.on('logout', userId => {
+        console.log(userId);
+        delete users[userId];
+    })
+
+    socket.on('message', (data) => {
+
+        const receiver_socket_id = users[data.receiver_id];
+        const message = new Message(data);
+        message.save();
+        io.to(receiver_socket_id).emit('receiveMessage', data);
+    })
+
+}
+
+server.listen(5000, () => {
+    console.log('server running at http://localhost:5000');
 });
 
 

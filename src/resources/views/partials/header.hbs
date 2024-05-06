@@ -30,7 +30,11 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="/profile/create">Tạo Khóa Học</a></li>
+                        {{#if userData.name}}
                         <li><a class="dropdown-item" href="/profile/show">Xem Profile</a></li>
+                        {{/if}}
+
+
                         <li><a class="dropdown-item" href="/store/information">Khoa Hoc Cua Toi</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -40,8 +44,8 @@
                 </li>
 
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" action="/search" method="get">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

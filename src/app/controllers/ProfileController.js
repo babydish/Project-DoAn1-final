@@ -15,7 +15,6 @@ class ProfileController {
 
     // [POST] profile/:id/delete
     delete(req, res, next) {
-        console.log(req.params.id);
 
         Profile.deleteOne({ _id: req.params.id })
 
@@ -27,6 +26,9 @@ class ProfileController {
 
     // [POST] profile/update
     update(req, res, next) {
+
+
+
         Profile.updateOne({ _id: req.params.id }, req.body)
 
             .then(() => {
@@ -73,9 +75,10 @@ class ProfileController {
         res.locals.userData = user;
 
 
-        Profile.find({}).lean() // return plain JavaScript objects (POJOs) hàm .lean() trong Mongoose yêu cầu nó trả về các đối tượng JavaScript đơn giản (POJO) thay vì các tài liệu Mongoose đầy đủ khi truy vấn cơ sở dữ liệu.
-            .then(profile => {
-                res.render('profile/show', { profile })
+
+        Profile.findById(user._id).lean() // return plain JavaScript objects (POJOs) hàm .lean() trong Mongoose yêu cầu nó trả về các đối tượng JavaScript đơn giản (POJO) thay vì các tài liệu Mongoose đầy đủ khi truy vấn cơ sở dữ liệu.
+            .then(information => {
+                res.render('profile/show', { information })
             })
             .catch(next)
 

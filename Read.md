@@ -31,3 +31,8 @@ middleware:
   const user = req.session.user;
    res.locals.userData = user;
    2 dong nay co o moi controller de truyen userData vao header moi trang . vi neu chi de o 1 controller no chi co tac dung voi controller do => cach cua toi ( hoang tuan anh) la dat vao moi controller (day la cach tam thoi (cach ngu) de giai quyet van de truoc mat)
+
+1. Để người dùng A gửi tin nhắn đến người dùng B khi cả hai đều đang hoạt động,cần thực hiện các bước sau:
+
+Xác định người gửi và người nhận: Khi người dùng A gửi một tin nhắn, họ cần chỉ định rằng tin nhắn đó dành cho người dùng B. Điều này thường được thực hiện bằng cách bao gồm user_id của người nhận (người dùng B trong trường hợp này) trong dữ liệu tin nhắn.
+Tuy nhiên, điều quan trọng là bạn cần đảm bảo rằng receiver_id bạn đang sử dụng để gửi tin nhắn chính là socket.id của người dùng bạn muốn gửi tin nhắn đến. Nếu receiver_id không phải là socket.id của người dùng đích, thì tin nhắn sẽ không được gửi đúng.

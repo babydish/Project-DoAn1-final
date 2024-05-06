@@ -6,6 +6,8 @@
                 <th scope="col">Email</th>
                 <th scope="col">Kĩ Năng Đã Có</th>
                 <th scope="col">Kĩ Năng Muốn Học</th>
+                <th scope="col">Course Image</th>
+                <th scope="col">Description Course</th>
                 <th></th>
             </tr>
         </thead>
@@ -18,6 +20,9 @@
                 <td>{{this.current_skills}}</td>
 
                 <td>{{this.skill_want_to_learn}}</td>
+                <td>{{this.course_image}}</td>
+
+                <td>{{this.description_course}}</td>
                 <td>
                     <a href="/profile/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                     <a href="" class="btn btn-link" data-bs-id="{{this._id}}" data-bs-toggle="modal"

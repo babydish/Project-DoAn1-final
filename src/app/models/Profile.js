@@ -9,13 +9,20 @@ const Profile = new mongoose.Schema({
     password: { type: String },
     skill_want_to_learn: { type: String },
     current_skills: { type: String },
+    course_image: { type: String },
+    description_course: { type: String },
     avatar: { type: String },
+    is_online: {
+        type: String,
+        default: '0'
+    },
     role: { type: String },
 
-}, { timestamps: true });
 
+}, { timestamps: true });
 
 
 // creating a model : we need convert to schema into a Model. (mongoose.model('modelName',Profile))
 const Profiles = mongoose.model('User', Profile);
 module.exports = Profiles;
+
