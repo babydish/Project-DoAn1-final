@@ -15,7 +15,6 @@
     <h1 class="">ichat</h1>
     <input type="hidden" value="{{receiver_id}}" id="receiver_id">
     <input type="hidden" id="sender_id" value="{{sender._id}}">
-
     <div class="main">
         <div class="name">
             <span><i class="far fa-user"></i></span>
@@ -23,21 +22,7 @@
         </div>
         <ul class="message-container" id="message-container">
 
-            {{#each messages}}
-
-            <p class="message">
-                <li class="{{#if isOwnMessage}}message-right{{else}}message-left{{/if}}">
-                    <p class="message">
-                        {{this.message}}
-
-                    </p>
-                </li>
-
-            </p>
-
-            {{/each}}
-
-
+            <li class="message-right">{{message}}</li>
 
 
         </ul>
@@ -126,6 +111,7 @@
             messageContainer.innerHTML += element;
 
         }
+        function historyChat()
 
     </script>
 

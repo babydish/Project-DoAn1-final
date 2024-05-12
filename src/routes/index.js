@@ -2,8 +2,9 @@ const siteRouter = require('./site');
 const profileRouter = require('./profile');
 const meRouter = require('./me');
 const userRouter = require('./user');
-const chatRouter = require('./chat')
-const Auth = require('../services/auth')
+const chatRouter = require('./chat');
+
+
 
 
 

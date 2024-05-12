@@ -36,3 +36,16 @@ middleware:
 
 Xác định người gửi và người nhận: Khi người dùng A gửi một tin nhắn, họ cần chỉ định rằng tin nhắn đó dành cho người dùng B. Điều này thường được thực hiện bằng cách bao gồm user_id của người nhận (người dùng B trong trường hợp này) trong dữ liệu tin nhắn.
 Tuy nhiên, điều quan trọng là bạn cần đảm bảo rằng receiver_id bạn đang sử dụng để gửi tin nhắn chính là socket.id của người dùng bạn muốn gửi tin nhắn đến. Nếu receiver_id không phải là socket.id của người dùng đích, thì tin nhắn sẽ không được gửi đúng.
+
+fetch : goi len 1 api de lay ra noi dung duoc luu tru o backend -> render ra cho nguoi dung
+
+api (url): application programing interface
+-> cổng giao tiếp giữa các phần mềm
+
+// backend -> api -> fectch -> json/xml
+
+Tại sao phải dùng ES trong khi tìm kiếm văn bản có thể sử dụng câu lệnh LIKE SQL cũng được?
+
+Nếu search bằng truy vấn LIKE “%one%” thì kết quả sẽ chỉ cần chứa “one” là ra. Ví dụ: “phone”, “zone”, “money”, “alone” … nói chung sẽ là 1 list kết quả không mong muốn.
+
+Còn search bằng ES thì gõ “one” sẽ chỉ có “one” được trả về mà thôi. Truy vấn LIKE không thể truy vấn từ có dấu. Ví dụ: từ khoá có dấu là “có”, nếu truy vấn LIKE chỉ gõ “co” thì sẽ không trả về được chính xác kết quả Về Perfomance thì ES sẽ là tốt hơn, truy vấn LIKE sẽ tìm kiếm đơn thuần toàn văn bản không sử dụng index, nghĩa là tập dữ liệu càng lớn thì tìm kiếm càng lâu, trong khi ES lại “đánh index” cho các trường được chọn để tìm kiếm.

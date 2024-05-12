@@ -2,7 +2,10 @@
 
     <div class="container py-5">
         <div class="row">
+
             {{#each information}}
+
+
             <div class="col-lg-4">
                 <div class="card mb-4">
 
@@ -12,9 +15,10 @@
                         <p class="text-muted mb-1">{{this.name}}</p>
 
                         <div class="d-flex justify-content-center mb-2">
-                            <a href="/profile/information/{{this._id}}" class="btn btn-primary">Information</a>
+                            <a href="/profile/information/{{this._id}}"
+                                class="btn btn-primary information-a-home">Information</a>
 
-                            <a href="/chat/{{this._id}}" class="btn btn-primary">chat</a>
+                            <a href="/chat/{{this._id}}" class="btn btn-primary ml-6">Chat</a>
                         </div>
                     </div>
                     <div class="card mb-4 mb-lg-0">
@@ -103,7 +107,9 @@
 
             </div>
             <hr> <br>
+
             {{/each}}
+
         </div>
 
     </div>

@@ -62,9 +62,17 @@ class ProfileController {
     store(req, res, next) {
 
         const profile = new Profile(req.body);
-        console.log(profile);
         profile.save()
-            .then(() => res.redirect('/'))
+
+            .then(() => {
+                req.session.user = req.body;
+                const user = req.session.user;
+                res.locals.userData = user;
+                res.redirect('/')
+
+
+
+            })
             .catch(error => { res.send(error) })
     }
 
