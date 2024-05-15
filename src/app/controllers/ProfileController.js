@@ -82,16 +82,14 @@ class ProfileController {
         const user = req.session.user;
         res.locals.userData = user;
 
-
-
-        Profile.findById(user._id).lean() // return plain JavaScript objects (POJOs) hàm .lean() trong Mongoose yêu cầu nó trả về các đối tượng JavaScript đơn giản (POJO) thay vì các tài liệu Mongoose đầy đủ khi truy vấn cơ sở dữ liệu.
+        Profile.findById(user._id)
+            .populate('courses') // populate 'courses' field with the actual course documents
+            .lean() // convert the Mongoose document to a plain JavaScript object
             .then(information => {
                 res.render('profile/show', { information })
             })
             .catch(next)
-
     }
-
 }
 
 

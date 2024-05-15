@@ -12,6 +12,8 @@
                                 <a href="/profile/{{information._id}}/edit" class="btn btn-link"
                                     style="text-decoration: none;">Edit Profile</a>
                             </button>
+
+
                         </div>
                         <div class="ms-3" style="margin-top: 130px;">
                             <h5>{{information.name}}</h5>
@@ -41,8 +43,20 @@
                                 <p class="font-italic mb-1">{{information.current_skills}}</p>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="lead fw-normal mb-0">Các Khóa Học Của {{information.name}}</p>
+                            <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
+                        </div>
 
+                        <div class="row g-2">
 
+                            {{#each information.courses}}
+                            <div class="col mb-2">
+                                <a href="/course/course-detail"><img src="{{this.course_image}}" alt=""
+                                        class="img-course"></a>
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
                 </div>
             </div>

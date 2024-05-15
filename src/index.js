@@ -7,7 +7,6 @@ const { Server } = require("socket.io");
 const { createServer } = require('node:http');
 const app = express();
 const Message = require('./app/models/Message');
-
 const server = createServer(app);
 const io = new Server(server);
 const userNamespace = io.of('/user-namespace');

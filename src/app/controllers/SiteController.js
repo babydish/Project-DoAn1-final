@@ -14,11 +14,23 @@ class SiteController {
     }
 
     index(req, res, next) {
+        let check = false;
 
         Profile.find().lean()
             .then((information) => {
                 const userData = req.session.user;
-                res.render('home', { information, userData });
+                if (userData) {
+                    information.forEach(infor => {
+                        if (infor._id.toString() === userData._id.toString()) {
+                            infor.check = true;
+                        }
+                    });
+
+
+                }
+
+
+                res.render('home', { information, userData, check });
             })
             .catch(err => {
                 next(err);

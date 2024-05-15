@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <h1 class="">ichat</h1>
     <input type="hidden" value="{{receiver_id}}" id="receiver_id">
     <input type="hidden" id="sender_id" value="{{sender._id}}">
 
@@ -29,7 +28,7 @@
                 <li class="{{#if isOwnMessage}}message-right{{else}}message-left{{/if}}">
                     <p class="message">
                         {{this.message}}
-
+                        <span>{{this.timestamp}}</span>
                     </p>
                 </li>
 
@@ -112,7 +111,6 @@
         })
 
         function addMessageToUI(isOwnMessage, data) {
-            console.log(data)
             const element = `
             <li class="${isOwnMessage ? "message-right" : "message-left"}">
                 <p class="message">
@@ -121,9 +119,8 @@
                 </p>
             </li>`;
 
-
-
             messageContainer.innerHTML += element;
+
 
         }
 

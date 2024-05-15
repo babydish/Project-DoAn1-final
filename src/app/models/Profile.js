@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 
 const Profile = new mongoose.Schema({
-
-
     email: { type: String },
     name: { type: String },
     password: { type: String },
@@ -17,6 +15,7 @@ const Profile = new mongoose.Schema({
         default: '0'
     },
     role: { type: String },
+    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
 
 
 }, { timestamps: true });

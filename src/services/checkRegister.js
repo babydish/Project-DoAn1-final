@@ -23,7 +23,7 @@ class checkRegister {
         }
 
         if (error_message !== '') {
-            res.render('profile/upload', { error_message: error_message });
+            res.render('profile/upload', { error_message });
 
         } else {
             next();
