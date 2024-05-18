@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --inspect AppSkillSwap/src/index.js",
-    "watch": "node-sass --watch AppSkillSwap/src/resources/scss/ --output AppSkillSwap/src/public/css/"
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/"
   },
   "author": "tuan anh",
   "license": "ISC",

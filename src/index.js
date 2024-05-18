@@ -6,9 +6,11 @@ const { engine } = require('express-handlebars'); // destructuring in js
 const { Server } = require("socket.io");
 const { createServer } = require('node:http');
 const app = express();
-const server = createServer(app);
+const server = require('http').createServer(app);
 const io = new Server(server);
 const connect_db = require('./config/db');
+const port = process.env.PORT || 5000; // Sử dụng PORT được cung cấp hoặc mặc định là 5000
+
 const { onConnected } = require('./services/socketsConnected')
 
 app.use(session({
@@ -49,9 +51,6 @@ app.set('views', path.join(__dirname, 'resources/views'))
 route(app);
 
 io.on('connection', (socket) => onConnected(io, socket));
-
-server.listen(5000, () => {
-    console.log('server running at http://localhost:5000');
+server.listen(port, () => {
+    console.log(`server running at http://localhost:${port}`);
 });
-
-
