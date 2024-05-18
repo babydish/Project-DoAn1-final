@@ -6,12 +6,9 @@ const MessageSchema = new mongoose.Schema({
     receiver_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     timestamp: {
         type: Date,
-        default: () => {
-            const utcDate = new Date();
-            const vietnamTimeString = utcDate.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-            return new Date(vietnamTimeString);
-        }
-    },
+        default: Date.now()
+    }
+
 });
 
 // Creating a model: we need to convert the schema into a Model.
