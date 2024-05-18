@@ -46,10 +46,22 @@
                             <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
                         </div>
                         <div class="row g-2">
+
+                            {{#each information.courses}}
+                            <div class="col mb-2">
+                                <a href="/course/course-detail"><img src="{{this.course_image}}" alt=""
+                                        class="img-course"></a>
+                            </div>
+                            {{/each}}
+
+
+
                             <div class="col mb-2">
                                 <a href="/course/course-detail"><img src="{{information.course_image}}" alt=""
                                         class="img-course"></a>
                             </div>
+
+
                         </div>
 
                     </div>

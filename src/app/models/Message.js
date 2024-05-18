@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 
-
 const MessageSchema = new mongoose.Schema({
     message: { type: String },
     sender_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     receiver_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    timestamp: { type: Date, default: Date.now },
+    timestamp: {
+        type: Date,
+        default: () => {
+            const utcDate = new Date();
+            const vietnamTimeString = utcDate.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+            return new Date(vietnamTimeString);
+        }
+    },
 });
 
-// creating a model : we need convert to schema into a Model. (mongoose.model('modelName',Profile))
+// Creating a model: we need to convert the schema into a Model.
+const Message = mongoose.model('Message', MessageSchema);
 
-const MessageSchemas = mongoose.model('Message', MessageSchema)
-
-module.exports = MessageSchemas;
-
+module.exports = Message;

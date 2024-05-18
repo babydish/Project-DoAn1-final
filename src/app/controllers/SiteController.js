@@ -1,5 +1,5 @@
 const Profile = require('../models/Profile');
-const sessions = require('../../services/session');
+
 class SiteController {
 
     //[GET] /search
@@ -25,11 +25,7 @@ class SiteController {
                             infor.check = true;
                         }
                     });
-
-
                 }
-
-
                 res.render('home', { information, userData, check });
             })
             .catch(err => {

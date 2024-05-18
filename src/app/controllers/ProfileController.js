@@ -3,7 +3,9 @@ const Profile = require('../models/Profile');
 class ProfileController {
 
     information(req, res, next) {
-        Profile.findById(req.params.id).lean()
+        Profile.findById(req.params.id)
+            .populate('courses') // populate 'courses' field with the actual course documents
+            .lean() // convert the Mongoose document to a plain JavaScript object
             .then(information => {
                 const user = req.session.user;
                 res.locals.userData = user;
@@ -26,14 +28,9 @@ class ProfileController {
 
     // [POST] profile/update
     update(req, res, next) {
-
-
-
         Profile.updateOne({ _id: req.params.id }, req.body)
-
             .then(() => {
                 res.redirect('/store/information')
-
             })
             .catch(next)
     }
@@ -45,9 +42,7 @@ class ProfileController {
         Profile.findById(req.params.id).lean()
             .then(information_id => {
                 res.render('profile/edit', { information_id })
-
             })
-
     }
 
     // [GET] /profile/create
@@ -85,8 +80,8 @@ class ProfileController {
         Profile.findById(user._id)
             .populate('courses') // populate 'courses' field with the actual course documents
             .lean() // convert the Mongoose document to a plain JavaScript object
-            .then(information => {
-                res.render('profile/show', { information })
+            .then(informationCourse => {
+                res.render('profile/show', { informationCourse })
             })
             .catch(next)
     }

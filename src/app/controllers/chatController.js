@@ -2,29 +2,6 @@ const Chat = require('../models/Message');
 const Profile = require('../models/Profile')
 
 class chatController {
-    fetchChat(req, res, next) {
-        const sender_id = req.session.user._id;
-
-
-        fetch('http://localhost:5000/chat/apiChat')
-            .then(function (response) {
-                return response.json()
-            })
-            .then(chat => {
-                if (sender_id === chat.sender_id & receiver_id === chat.receiver_id) {
-                    res.json(chat)
-
-                }
-                res.render('chat/historyChat', { chat })
-            })
-    }
-
-    apiChat(req, res, next) {
-        Chat.find().lean()
-            .then((chat) => {
-                res.json(chat);
-            })
-    }
 
 
     chat(req, res, next) {
@@ -45,10 +22,14 @@ class chatController {
                         if (message.sender_id.toString() === sender._id.toString()) {
                             message.isOwnMessage = true;
                         }
+                        message.timestamp = new Date(message.timestamp).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
 
                     });
-                    res.render('chat/chat', { sender, receiver_id, messages, isOwnMessage })
+                    Profile.findById(receiver_id).lean()
+                        .then(receiver_id => {
+                            res.render('chat/chat', { sender, receiver_id, messages, isOwnMessage, headerChat: true })
 
+                        })
                 })
                 .catch(err => {
                     console.log(err);

@@ -1,4 +1,4 @@
-const sessions = require('../services/session');
+
 const Profile = require('../app/models/Profile');
 
 class Auth {

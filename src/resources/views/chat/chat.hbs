@@ -1,24 +1,12 @@
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/chat.css">
-
-</head>
-
 <body>
-    <input type="hidden" value="{{receiver_id}}" id="receiver_id">
+    <input type="hidden" value="{{receiver_id._id}}" id="receiver_id">
     <input type="hidden" id="sender_id" value="{{sender._id}}">
+    <input type="hidden" id="name-sender" class="name-input" value="{{sender.name}}">
 
     <div class="main">
         <div class="name">
-            <span><i class="far fa-user"></i></span>
-            <input type="text" id="name-input" class="name-input" value="{{sender.name}}" maxlength="20">
+            <img src="{{receiver_id.avatar}}" alt="avatar of {{receiver_id.name}}" id="avartarChat">
+            <input type="text" id="name-input" class="name-input" value="{{receiver_id.name}}" maxlength="20">
         </div>
         <ul class="message-container" id="message-container">
 
@@ -31,13 +19,8 @@
                         <span>{{this.timestamp}}</span>
                     </p>
                 </li>
-
             </p>
-
             {{/each}}
-
-
-
 
         </ul>
         <form action="" class="message-form" id="message-form">
@@ -47,10 +30,8 @@
                 send <span></span>
             </button>
         </form>
-
     </div>
-    <br> <br>
-    <h3 class="client-total" id="client-total">Total client 1</h3>
+    <br>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
@@ -62,9 +43,10 @@
 
         const clientsTotal = document.getElementById('client-total');
         const messageContainer = document.getElementById('message-container');
-        const nameInput = document.getElementById('name-input');
+        const nameSender = document.getElementById('name-sender');
         const messageForm = document.getElementById('message-form');
         const messageInput = document.getElementById('message-input');
+        scrollBottom();
 
         // Khi người dùng đăng nhập, phát sự kiện 'login' với user_id
 
@@ -77,13 +59,13 @@
         })
         socket.on('clients-total', (data) => {
 
-            clientsTotal.innerText = `Total Clients: ${data}`
+            clientsTotal.innerText = `Online Client Total: ${data}`
 
         })
 
         function sendMessage() {
             const data = {
-                name: nameInput.value,
+                name: nameSender.value,
                 message: messageInput.value,
                 receiver_id: receiverId,
                 sender_id: senderId,
@@ -91,8 +73,6 @@
             }
             socket.emit('message', data)
             addMessageToUI(true, data);
-
-
             messageInput.value = '';
 
 
@@ -120,12 +100,12 @@
             </li>`;
 
             messageContainer.innerHTML += element;
-
-
+            scrollBottom();
+        }
+        function scrollBottom() {
+            messageContainer.scrollTo(0, messageContainer.scrollHeight)
         }
 
+
     </script>
-
 </body>
-
-</html>

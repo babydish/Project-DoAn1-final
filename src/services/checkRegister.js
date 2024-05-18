@@ -1,6 +1,7 @@
-class checkRegister {
-    checkRegister(req, res, next) {
+const Profile = require('../app/models/Profile');
 
+class CheckRegister {
+    async checkRegister(req, res, next) {
         const username = req.body.name;
         const password = req.body.password;
         const confirmPassword = req.body.confirmPassword;
@@ -22,14 +23,21 @@ class checkRegister {
             error_message += 'Email bạn nhập không hợp lệ.<br>';
         }
 
+        try {
+            const emailExists = await Profile.findOne({ email: email });
+            if (emailExists) {
+                error_message += 'Email đã được sử dụng.<br>';
+            }
+        } catch (error) {
+            return res.status(500).send('Internal server error');
+        }
+
         if (error_message !== '') {
             res.render('profile/upload', { error_message });
-
         } else {
             next();
         }
-
     }
 }
 
-module.exports = new checkRegister();
+module.exports = new CheckRegister();
