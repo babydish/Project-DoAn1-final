@@ -1,17 +1,44 @@
 const Profile = require('../models/Profile');
 
+
 class SiteController {
 
     //[GET] /search
+    //[GET] /search
     search(req, res, next) {
-        const name_user = req.query.search;
+        const query = req.query.search;
 
-        Profile.findOne({ name: name_user })
-            .then((user) => {
-                res.json(user)
+        // Tìm kiếm người dùng
+        Profile.find({ name: { $regex: query, $options: 'i' } })
+            .populate('courses')
+            .lean()
+            .then((resultSearch) => {
+                if (resultSearch.length > 0) {
 
+
+                    // Nếu tìm thấy người dùng, hiển thị thông tin của họ
+                    res.render('user/resultSearch', { resultSearch })
+                } else {
+                    // Nếu không tìm thấy người dùng, tìm kiếm kỹ năng
+                    Profile.find({ current_skills: { $regex: query, $options: 'i' } })
+                        .lean()
+                        .then((resultSearch) => {
+                            if (resultSearch.length > 0) {
+                                res.render('user/resultSearch', { resultSearch })
+                                // Nếu tìm thấy kỹ năng, hiển thị chúng
+
+                            } else {
+                                // Nếu không tìm thấy bất kỳ kết quả nào, hiển thị thông báo
+                                res.send(`khong tim thay : ${query}`)
+                            }
+                        })
+                }
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
+
 
     index(req, res, next) {
         let check = false;

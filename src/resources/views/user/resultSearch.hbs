@@ -1,0 +1,28 @@
+<div class="row ng-scope">
+    <div class="col-md-9 col-md-pull-3">
+        <p class="search-results-count">About 94 700 000 (0.39 sec.) results</p>
+        {{#each resultSearch}}
+        <section class="search-result-item">
+            <a class="image-link" href="#"><img class="image" src="{{this.avatar}}">
+            </a>
+            <div class="search-result-item-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h4 class="search-result-item-heading"><a href="#">{{this.name}}</a></h4>
+                        <p class="info">{{this.email}}</p>
+
+                        <p class="description"> Kĩ Năng Hiện Tại<br>{{this.current_skills}}</p>
+                    </div>
+                    <div class="col-sm-3 text-align-center">
+                        <p class="value3 mt-sm">Kĩ Năng Muốn Học</p>
+                        <p class="fs-mini text-muted">{{this.skill_want_to_learn}}</p><a
+                            class="btn btn-primary btn-info btn-sm"
+                            href="/profile/information/{{this._id}}">Information</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{/each}}
+
+    </div>
+</div>

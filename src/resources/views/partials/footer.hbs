@@ -1,13 +1,32 @@
 {{#if informationCourse}}
 
 {{else}}
-<footer class="text-center text-lg-start bg-body-tertiary text-muted">
 
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2023 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+<footer>
+    <div class="footer-content">
+        <div class="contact">
+            <h3>Liên hệ</h3>
+            <p>Điện thoại: 0123 456 789</p>
+            <p>Email: tuananhhoang@gmail.com</p>
+        </div>
+        <div class="social-media">
+            <h3>Kết nối xã hội</h3>
+            <a href="https://www.facebook.com/hta36/about"><i class="fa fa-facebook-square"
+                    style="font-size:23px;color:chartreuse"></i>Facebook</a>
+            <a href="#"><i class="fa fa-instagram" style="font-size:23px;color:red"></i>Instagram</a>
+            <a href="#"><i class="fa fa-twitter" style="font-size:23px;color:cyan"></i>Twitter</a>
+        </div>
+        <div class="newsletter">
+            <h3>Nhận tin tức</h3>
+            <form action="">
+
+                <button type="submit" id="dang-ki">Đăng ký Nhan Tin Tuc</button>
+            </form>
+        </div>
     </div>
 
+    <div class="copyright">
+        &copy; SkillSwap - Hoang Tuan Anh
+    </div>
 </footer>
-
 {{/if}}

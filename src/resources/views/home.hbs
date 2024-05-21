@@ -24,23 +24,25 @@
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush rounded-3">
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fas fa-globe fa-lg text-warning"></i>
+                                    <a href="#"><i class="fa fa-email" style="font-size:23px;color:red"></i></a>
                                     <p class="mb-0">Kinh nghiem lam viec</p>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                    <p class="mb-0">2 Năm gia sư</p>
+
+
+                                    <a href="#"><i class="fa fa-bell" style="font-size:23px;color:blue"></i></a>
+                                    <p class="mb-0">{{this.current_skills}}</p>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                    <a href="#"><i class="fa fa-tasks" style=" font-size:23px;color:blue"></i></a>
                                     <p class="mb-0">1 năm giảng dạy tại trung tâm</p>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <a href="#"><i class="fa fa-briefcase" style="font-size:23px;color:blue"></i></a>
                                     <p class="mb-0">Thạc Sĩ Khoa Học Máy Tính HUMG</p>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <a href="#"><i class="fa fa-envelope" style="font-size:23px;color:red"></i></a>
                                     <p class="mb-0">{{this.email}}</p>
                                 </li>
                             </ul>
@@ -54,7 +56,9 @@
                         <div class="card" style="width: 18rem;">
                             <img src="{{this.course_image}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Học Cùng Tôi</h5>
+                                <a href="#" class="btn btn-primary ml-2" style="background-color: greenyellow;">
+                                    <h6 class="card-title" style="color: brown;">{{this.current_skills}}</h6>
+                                </a>
                                 <p class="card-text">{{this.description_course}}</p>
                             </div>
                         </div>

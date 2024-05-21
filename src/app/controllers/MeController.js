@@ -2,6 +2,27 @@ const Me = require('../models/Profile');
 const Course = require('../models/Courses');
 
 class MeController {
+    // [POST] /me/course/:id/delete_course
+    delete_course(req, res, next) {
+        console.log(req.params.id)
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => {
+                res.redirect('/store/id_delete')
+            })
+            .catch(err => { res.send(err) })
+    }
+
+    id_delete(req, res, next) {
+        const user = req.session.user;
+        res.locals.userData = user;
+
+        Course.find({ owner_course: user._id }).lean()
+            .then(course => {
+                res.render('me/store_course', { course })
+            })
+    }
+
+
     stored_save(req, res, next) {
         const user = req.session.user;
         const courses = new Course(req.body);

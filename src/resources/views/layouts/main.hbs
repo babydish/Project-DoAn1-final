@@ -16,8 +16,9 @@
     {{else}}
     <link rel="stylesheet" href="/css/app.css">
     {{/if}}
-
-
+    {{#if resultSearch}}
+    <link rel="stylesheet" href="/css/resultSearch.css">
+    {{/if}}
 
 
 </head>
@@ -38,10 +39,11 @@
         </div>
 
         {{#if headerChat}}
+
+
         {{else}}
         {{> footer}}
         {{/if}}
-
 
 
     </div>

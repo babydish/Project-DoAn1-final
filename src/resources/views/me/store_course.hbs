@@ -1,0 +1,77 @@
+<div class="mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Course Image</th>
+                <th scope="col">Description Course</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each course}}
+            <tr>
+
+
+                <td>{{this.course_image}}</td>
+
+                <td>{{this.description_course}}</td>
+                <td>
+                    <a href="/me/course/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="" class="btn btn-link" data-bs-id="{{this._id}}" data-bs-toggle="modal"
+                        data-bs-target="#delete-course-modal">Xóa</a>
+                </td>
+
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Confirm delete -->
+<div class="modal fade" id="delete-course-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to delete the course?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa khóa học này không không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn delete-course-modal" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-delete-course-modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- DELETE HIDDEN FORM --}}
+<form name="delete-course-form" method="post"></form>
+
+<script>
+    var deleteCourseModel = document.querySelector('#delete-course-modal');
+    deleteCourseModel.addEventListener('show.bs.modal', function (event) {
+
+
+        var deleteCourseForm = document.forms['delete-course-form'] // trả về một HTMLCollection của các phần tử form với cùng tên.
+
+        var button = event.relatedTarget; // trả về phần tử liên quan đến sự kiện (thường là phần tử mà con trỏ chuột đã đi vào hoặc ra khỏi).
+        const courseID = button.getAttribute('data-bs-id'); // lay ra id cai ma nguoi dung muon xoa
+        console.log(courseID)
+
+
+        var btnDeleteCourse = document.querySelector('#btn-delete-course-modal');
+        btnDeleteCourse.onclick = function () {
+            deleteCourseForm.action = '/store' + '/course/' + courseID + '/delete';
+            deleteCourseForm.submit();
+        }
+
+
+    })
+
+</script>

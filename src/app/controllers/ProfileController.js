@@ -6,10 +6,10 @@ class ProfileController {
         Profile.findById(req.params.id)
             .populate('courses') // populate 'courses' field with the actual course documents
             .lean() // convert the Mongoose document to a plain JavaScript object
-            .then(information => {
+            .then(informationCourse => {
                 const user = req.session.user;
                 res.locals.userData = user;
-                res.render('user/information', { information })
+                res.render('user/information', { informationCourse })
             })
             .catch(error => (res.send(error)))
 
@@ -26,7 +26,7 @@ class ProfileController {
 
 
 
-    // [POST] profile/update
+    // [POST] profile/:id/edited
     update(req, res, next) {
         Profile.updateOne({ _id: req.params.id }, req.body)
             .then(() => {
