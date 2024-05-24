@@ -1,6 +1,6 @@
 <div class="row ng-scope">
     <div class="col-md-9 col-md-pull-3">
-        <p class="search-results-count">About 94 700 000 (0.39 sec.) results</p>
+        <p class="search-results-count">About {{numberResult}} results for: {{query}}</p>
         {{#each resultSearch}}
         <section class="search-result-item">
             <a class="image-link" href="#"><img class="image" src="{{this.avatar}}">

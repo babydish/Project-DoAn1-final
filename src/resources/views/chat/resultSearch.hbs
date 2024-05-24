@@ -1,0 +1,30 @@
+<body>
+    <input type="hidden" value="{{receiver_id._id}}" id="receiver_id">
+    <input type="hidden" id="sender_id" value="{{sender._id}}">
+    <input type="hidden" id="name-sender" class="name-input" value="{{sender.name}}">
+
+    <div class="main">
+        <div class="name">
+            <img src="{{receiver_id.avatar}}" alt="avatar of {{receiver_id.name}}" id="avartarChat">
+            <input type="text" id="name-input" class="name-input" value="{{receiver_id.name}}" maxlength="20">
+        </div>
+        <ul class="message-container" id="message-container">
+            <p>Có {{numberResult}} câu {{keyword.search}}</p>
+
+            {{#each messages}}
+
+            <p class="message">
+                <li class="{{#if isOwnMessage}}message-right{{else}}message-left{{/if}}" style="color: red">
+                    <p class="message">
+                        {{this.message}}
+                        <span>{{this.timestamp}}</span>
+                    </p>
+                </li>
+            </p>
+            {{/each}}
+
+        </ul>
+
+    </div>
+
+</body>

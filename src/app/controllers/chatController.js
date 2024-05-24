@@ -6,12 +6,8 @@ class chatController {
     searchMessage(req, res, next) {
         const sender = req.session.user;
         const keyword = req.query;
-
+        let isOwnMessage = false;
         const receiver_id = req.session.receiver_id;
-        console.log('sender_id:', sender, 'receiver_id:', receiver_id)
-        res.locals.userData = sender;
-
-
 
         Chat.find({
             $or: [
@@ -21,7 +17,27 @@ class chatController {
             message: { $regex: keyword.search, $options: 'i' }
         }).sort('createdAt').lean()
             .then(messages => {
-                console.log(messages)
+
+
+                if (messages.length > 0) {
+
+                    const numberResult = messages.length;
+                    messages.forEach(message => {
+                        if (message.sender_id.toString() === sender._id.toString()) {
+                            message.isOwnMessage = true;
+                        }
+                        message.timestamp = new Date(message.timestamp).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+
+                    });
+                    Profile.findById(receiver_id).lean()
+                        .then(receiver_id => {
+                            res.render('chat/resultSearch', { sender, receiver_id, messages, isOwnMessage, numberResult, headerChat: true, keyword })
+
+                        })
+                } else {
+                    res.send('khong tim thay doan chat');
+                }
+
             })
             .catch(err => {
                 console.log(err);

@@ -14,17 +14,19 @@ class SiteController {
             .lean()
             .then((resultSearch) => {
                 if (resultSearch.length > 0) {
+                    const numberResult = resultSearch.length
 
 
                     // Nếu tìm thấy người dùng, hiển thị thông tin của họ
-                    res.render('user/resultSearch', { resultSearch })
+                    res.render('user/resultSearch', { resultSearch, query, numberResult })
                 } else {
                     // Nếu không tìm thấy người dùng, tìm kiếm kỹ năng
                     Profile.find({ current_skills: { $regex: query, $options: 'i' } })
                         .lean()
                         .then((resultSearch) => {
                             if (resultSearch.length > 0) {
-                                res.render('user/resultSearch', { resultSearch })
+                                const numberResult = resultSearch.length
+                                res.render('user/resultSearch', { resultSearch, query, numberResult })
                                 // Nếu tìm thấy kỹ năng, hiển thị chúng
 
                             } else {

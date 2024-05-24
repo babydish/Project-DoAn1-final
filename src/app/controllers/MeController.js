@@ -2,9 +2,8 @@ const Me = require('../models/Profile');
 const Course = require('../models/Courses');
 
 class MeController {
-    // [POST] /me/course/:id/delete_course
+    // [POST] /store/course/:id/delete_course
     delete_course(req, res, next) {
-        console.log(req.params.id)
         Course.deleteOne({ _id: req.params.id })
             .then(() => {
                 res.redirect('/store/id_delete')
@@ -12,6 +11,7 @@ class MeController {
             .catch(err => { res.send(err) })
     }
 
+    // [GET] /store/id_delete
     id_delete(req, res, next) {
         const user = req.session.user;
         res.locals.userData = user;
