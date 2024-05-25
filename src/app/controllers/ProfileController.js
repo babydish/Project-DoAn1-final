@@ -60,13 +60,18 @@ class ProfileController {
         profile.save()
 
             .then(() => {
-                req.session.user = req.body;
-                const user = req.session.user;
-                res.locals.userData = user;
-                res.redirect('/')
 
 
+                Profile.findOne({ email: req.body.email }).lean()
+                    .then((information) => {
+                        req.session.user = information;
+                        const user = req.session.user;
 
+                        res.locals.userData = information;
+                        res.redirect('/')
+
+
+                    })
             })
             .catch(error => { res.send(error) })
     }

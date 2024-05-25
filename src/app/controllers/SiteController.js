@@ -48,8 +48,10 @@ class SiteController {
         Profile.find().lean()
             .then((information) => {
                 const userData = req.session.user;
-                if (userData) {
+
+                if (userData !== undefined) {
                     information.forEach(infor => {
+
                         if (infor._id.toString() === userData._id.toString()) {
                             infor.check = true;
                         }

@@ -2,6 +2,31 @@ const Chat = require('../models/Message');
 const Profile = require('../models/Profile')
 
 class chatController {
+    listMessenger(req, res, next) {
+        const user = req.session.user;
+        const displayedUsers = new Map();
+        res.locals.userData = user;
+        Chat.find({ sender_id: user._id })
+            .populate('receiver_id')
+            .lean()
+            .then((messenger) => {
+                messenger.forEach((userList) => {
+                    if (userList.receiver_id && userList.receiver_id.name) {
+                        const userId = userList.receiver_id._id.toString(); // Chuyển _id thành chuỗi để sử dụng làm khóa
+                        if (!displayedUsers.has(userId)) {
+                            displayedUsers.set(userId, userList.receiver_id);
+                        }
+                    }
+                });
+                const uniqueUsers = Array.from(displayedUsers.values());
+
+                res.render('chat/listMessenger', { uniqueUsers });
+            })
+            .catch((error) => {
+                console.error('Lỗi khi truy vấn dữ liệu:', error);
+                // Xử lý lỗi nếu cần
+            });
+    }
 
     searchMessage(req, res, next) {
         const sender = req.session.user;
