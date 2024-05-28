@@ -7,6 +7,7 @@ class SiteController {
     //[GET] /search
     search(req, res, next) {
         const query = req.query.search;
+        res.locals.userData = req.session.user;
 
         // Tìm kiếm người dùng
         Profile.find({ name: { $regex: query, $options: 'i' } })
@@ -45,8 +46,15 @@ class SiteController {
     index(req, res, next) {
         let check = false;
 
-        Profile.find().lean()
+        Profile.find()
+            .populate({
+                path: 'courses',
+                options: { limit: 2 } // Giới hạn số lượng khóa học
+            })
+            .lean()
             .then((information) => {
+
+
                 const userData = req.session.user;
 
                 if (userData !== undefined) {

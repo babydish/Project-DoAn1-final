@@ -4,11 +4,25 @@ const Course = require('../models/Courses');
 class MeController {
     // [POST] /store/course/:id/delete_course
     delete_course(req, res, next) {
+        const idCourseDelete = req.params.id
+        // Xóa khóa học
         Course.deleteOne({ _id: req.params.id })
             .then(() => {
-                res.redirect('/store/id_delete')
+
+                // Cập nhật trường courses trong tài khoản người dùng
+                return Me.findOneAndUpdate(
+                    { _id: req.session.user._id }, // Tìm người dùng dựa trên _id
+                    { $pull: { courses: idCourseDelete } }, // Loại bỏ khóa học khỏi danh sách courses
+                    { new: true } // Trả về tài khoản người dùng đã được cập nhật
+                );
             })
-            .catch(err => { res.send(err) })
+            .then(updatedUser => {
+                // Chuyển hướng đến trang thông báo xóa thành công
+                res.redirect('/store/id_delete');
+            })
+            .catch(err => {
+                res.send(err);
+            });
     }
 
     // [GET] /store/id_delete
@@ -18,6 +32,7 @@ class MeController {
 
         Course.find({ owner_course: user._id }).lean()
             .then(course => {
+
                 res.render('me/store_course', { course })
             })
     }
@@ -28,7 +43,7 @@ class MeController {
         const courses = new Course(req.body);
         courses.save()
             .then((course) => {
-                // Tìm hồ sơ người dùng và thêm khóa học vào trường 'courses'
+
                 return Me.findOneAndUpdate(
                     { email: user.email },
                     { $push: { courses: course._id } },

@@ -5,28 +5,49 @@ class chatController {
     listMessenger(req, res, next) {
         const user = req.session.user;
         const displayedUsers = new Map();
+        const sentUsers = new Map(); // Sử dụng Map để lưu trữ thông tin người nhận
         res.locals.userData = user;
+
+        // Step 1: Find users that the current user has sent messages to
         Chat.find({ sender_id: user._id })
             .populate('receiver_id')
             .lean()
-            .then((messenger) => {
-                messenger.forEach((userList) => {
-                    if (userList.receiver_id && userList.receiver_id.name) {
-                        const userId = userList.receiver_id._id.toString(); // Chuyển _id thành chuỗi để sử dụng làm khóa
-                        if (!displayedUsers.has(userId)) {
-                            displayedUsers.set(userId, userList.receiver_id);
-                        }
+            .then((sentMessages) => {
+                sentMessages.forEach((message) => {
+                    if (message.receiver_id && message.receiver_id._id) {
+                        sentUsers.set(message.receiver_id._id.toString(), message.receiver_id);
                     }
                 });
-                const uniqueUsers = Array.from(displayedUsers.values());
 
-                res.render('chat/listMessenger', { uniqueUsers });
+                // Step 2: Find users that have sent messages to the current user
+                Chat.find({ receiver_id: user._id })
+                    .populate('sender_id')
+                    .lean()
+                    .then((receivedMessages) => {
+                        receivedMessages.forEach((message) => {
+                            if (message.sender_id && message.sender_id._id) {
+                                const senderId = message.sender_id._id.toString();
+
+                                // Check if the sender is not in the list of users that the current user has sent messages to
+                                if (!sentUsers.has(senderId)) {
+                                    if (!displayedUsers.has(senderId)) {
+                                        displayedUsers.set(senderId, message.sender_id);
+                                    }
+                                }
+                            }
+                        });
+
+                        const uniqueUsers = Array.from(displayedUsers.values());
+                        const sentUserList = Array.from(sentUsers.values());
+
+                        // Render both sentUsers and uniqueUsers
+                        res.render('chat/listMessenger', { sentUsers: sentUserList, uniqueUsers });
+                    })
+                    .catch(next);
             })
-            .catch((error) => {
-                console.error('Lỗi khi truy vấn dữ liệu:', error);
-                // Xử lý lỗi nếu cần
-            });
+            .catch(next);
     }
+
 
     searchMessage(req, res, next) {
         const sender = req.session.user;

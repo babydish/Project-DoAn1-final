@@ -30,7 +30,7 @@ class ProfileController {
     update(req, res, next) {
         Profile.updateOne({ _id: req.params.id }, req.body)
             .then(() => {
-                res.redirect('/store/information')
+                res.redirect('/profile/show')
             })
             .catch(next)
     }
