@@ -8,7 +8,7 @@ class chatController {
         const sentUsers = new Map(); // Sử dụng Map để lưu trữ thông tin người nhận
         res.locals.userData = user;
 
-        // Step 1: Find users that the current user has sent messages to
+        //  Tìm người dùng mà mình đã gửi tin nhắn
         Chat.find({ sender_id: user._id })
             .populate('receiver_id')
             .lean()

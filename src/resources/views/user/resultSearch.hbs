@@ -1,6 +1,7 @@
 <div class="row ng-scope">
     <div class="col-md-9 col-md-pull-3">
         <p class="search-results-count">About {{numberResult}} results for: {{query}}</p>
+        {{#if resultSearch}}
         {{#each resultSearch}}
         <section class="search-result-item">
             <a class="image-link" href="#"><img class="image" src="{{this.avatar}}">
@@ -12,6 +13,8 @@
                         <p class="info">{{this.email}}</p>
 
                         <p class="description"> Kĩ Năng Hiện Tại<br>{{this.current_skills}}</p>
+                        <p class="description"> Khóa Học của {{this.name}} <br> {{this.course_name}}</p>
+
                     </div>
                     <div class="col-sm-3 text-align-center">
                         <p class="value3 mt-sm">Kĩ Năng Muốn Học</p>
@@ -19,10 +22,39 @@
                             class="btn btn-primary btn-info btn-sm"
                             href="/profile/information/{{this._id}}">Information</a>
                     </div>
+
                 </div>
             </div>
         </section>
         {{/each}}
+        {{else}}
+        {{#each resultSearchCourses}}
+        <section class="search-result-item">
+            <a class="image-link" href="#"><img class="image" src="{{this.owner_course.avatar}}">
+            </a>
+            <div class="search-result-item-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h4 class="search-result-item-heading"><a href="#">{{this.owner_course.name}}</a></h4>
+                        <p class="info">{{this.owner_course.email}}</p>
+
+                        <p class="description"> Kĩ Năng Hiện Tại<br>{{this.current_skills}}</p>
+                        <p class="description"> Khóa Học của {{this.owner_course.name}} <br> {{this.course_name}}</p>
+
+                    </div>
+                    <div class="col-sm-3 text-align-center">
+                        <p class="value3 mt-sm">Kĩ Năng Muốn Học</p>
+                        <p class="fs-mini text-muted">{{this.owner_course.skill_want_to_learn}}</p><a
+                            class="btn btn-primary btn-info btn-sm"
+                            href="/profile/information/{{this.owner_course._id}}">Information</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        {{/each}}
+        {{/if}}
+
 
     </div>
 </div>

@@ -57,9 +57,13 @@
                         <div class="d-flex flex-wrap"> <!-- Sử dụng d-flex và flex-wrap -->
                             {{#each this.courses}}
                             <div class="card" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+
                                 <!-- Thêm margin để tạo khoảng cách giữa các thẻ -->
                                 <img src="{{this.course_image}}" class="card-img-top" alt="...">
+
+
                                 <div class="card-body">
+                                    <a href="#" class="btn btn-primary information-a-home">{{this.course_name}}</a>
 
                                     <p class="card-text">{{this.description_course}}</p>
                                 </div>
@@ -69,6 +73,7 @@
                                 <!-- Thêm margin để tạo khoảng cách giữa các thẻ -->
                                 <img src="{{this.course_image}}" class="card-img-top" alt="...">
                                 <div class="card-body">
+                                    <a href="#" class="btn btn-primary information-a-home">{{this.course_name}}</a>
 
                                     <p class="card-text">{{this.description_course}}</p>
                                 </div>

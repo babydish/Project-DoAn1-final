@@ -60,8 +60,6 @@ class ProfileController {
         profile.save()
 
             .then(() => {
-
-
                 Profile.findOne({ email: req.body.email }).lean()
                     .then((information) => {
                         req.session.user = information;

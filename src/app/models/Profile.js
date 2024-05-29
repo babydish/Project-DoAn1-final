@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 
 
 const Profile = new mongoose.Schema({
-    email: { type: String },
-    name: { type: String },
-    password: { type: String },
-    skill_want_to_learn: { type: String },
-    current_skills: { type: String },
-    course_image: { type: String },
-    description_course: { type: String },
+    email: { type: String, required: true },
+    name: { type: String, required: true },
+    password: { type: String, required: true },
+    skill_want_to_learn: { type: String, required: true },
+    current_skills: { type: String, required: true },
+    course_name: { type: String, default: true },
+    course_image: { type: String, default: 'Chưa Có Khóa Học' },
+    description_course: { type: String, default: 'Chưa Có Khóa Học' },
     avatar: { type: String },
     is_online: {
         type: String,
