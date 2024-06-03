@@ -5,7 +5,6 @@ const meController = require('../app/controllers/MeController');
 const upload = require('../services/upload')
 
 
-router.get('/uploaded_courses', meController.uploaded_courses)
 router.get('/id_delete', meController.id_delete);
 router.post('/course/:id/delete', meController.delete_course)
 router.get('/create', meController.stored_create);

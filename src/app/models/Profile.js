@@ -7,7 +7,7 @@ const Profile = new mongoose.Schema({
     password: { type: String, required: true },
     skill_want_to_learn: { type: String, required: true },
     current_skills: { type: String, required: true },
-    course_name: { type: String, default: true },
+    course_name: { type: String, default: 'chua co hinh anh' },
     course_image: { type: String, default: 'Chưa Có Khóa Học' },
     description_course: { type: String, default: 'Chưa Có Khóa Học' },
     avatar: { type: String },

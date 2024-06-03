@@ -1,5 +1,5 @@
-<form method="post" action="/profile/store">
-    <div class="form-group">
+<form method="post" action="/profile/store" enctype="multipart/form-data">
+    <div class=" form-group">
         <label for="email">Email address</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -33,26 +33,12 @@
         <input type="text" class="form-control" name="skill_want_to_learn" id="skill_want_to_learn"
             placeholder="Skill want to learn">
     </div>
-    <div class="form-group">
-        <label for="course_name">Course Name</label>
-        <input type="text" class="form-control" name="course_name" id="course_name">
-    </div>
 
-
-    <div class="form-group">
-        <label for="course_image">Course Image</label>
-        <input type="text" class="form-control" name="course_image" id="course_image">
-
-    </div>
-    <div class="form-group">
-        <label for="description_course">Mô Tả Khóa Học</label>
-        <input type="text" class="form-control" name="description_course" id="description_course">
-
-    </div>
 
     <div class="form-group">
         <label for="avatar">Avatar</label>
-        <input type="text" class="form-control" name="avatar" id="avatar">
+        <input type="file" class="form-control" name="avatar" id="avatar">
+
 
     </div>
 

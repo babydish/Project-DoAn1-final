@@ -2,10 +2,7 @@ const Me = require('../models/Profile');
 const Course = require('../models/Courses');
 
 class MeController {
-    uploaded_courses(req, res, next) {
-        res.render('/uploads')
 
-    }
     // [POST] /store/course/:id/delete_course
     delete_course(req, res, next) {
         const idCourseDelete = req.params.id

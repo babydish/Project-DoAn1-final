@@ -28,7 +28,13 @@ class ProfileController {
 
     // [POST] profile/:id/edited
     update(req, res, next) {
-        Profile.updateOne({ _id: req.params.id }, req.body)
+        const profileData = {
+            ...req.body,
+            avatar: req.file ? req.file.filename : '', // Thêm tên tệp hình ảnh vào mảng
+
+        };
+
+        Profile.updateOne({ _id: req.params.id }, profileData)
             .then(() => {
                 res.redirect('/profile/show')
             })
@@ -56,7 +62,16 @@ class ProfileController {
     // [POST] /profile/store
     store(req, res, next) {
 
-        const profile = new Profile(req.body);
+        const profileData = {
+            ...req.body,
+            avatar: req.file ? req.file.filename : '', // Thêm tên tệp hình ảnh vào mảng
+
+        };
+
+
+        console.log(profileData)
+        const profile = new Profile(profileData);
+
 
 
         profile.save()
@@ -64,6 +79,7 @@ class ProfileController {
             .then(() => {
                 Profile.findOne({ email: req.body.email }).lean()
                     .then((information) => {
+                        console.log(information)
                         req.session.user = information;
                         const user = req.session.user;
 

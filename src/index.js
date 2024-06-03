@@ -9,6 +9,7 @@ const app = express();
 const server = require('http').createServer(app);
 const io = new Server(server);
 const connect_db = require('./config/db');
+const multer = require('multer');
 const port = process.env.PORT || 5000; // Sử dụng PORT được cung cấp hoặc mặc định là 5000
 
 const { onConnected } = require('./services/socketsConnected')
@@ -22,6 +23,7 @@ app.use(session({
 
 
 app.use(cookieParser());
+
 // connect db
 connect_db.connect();
 
@@ -38,6 +40,10 @@ app.use(express.urlencoded({ // body-parser ; middleware ; get data from client 
 }));
 app.use(express.json()); // get date from js
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+
 
 //http logger
 app.use(morgan('combined'))

@@ -12,6 +12,8 @@ function route(app) {
     app.use('/user', userRouter);
     app.use('/chat', chatRouter);
 
+
+
 }
 
 module.exports = route;

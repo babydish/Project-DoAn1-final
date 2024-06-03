@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
                         <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                            <img src="{{informationCourse.avatar}}" alt="Generic placeholder image"
+                            <img src="../../../uploads/{{informationCourse.avatar}}" alt="Generic placeholder image"
                                 class="img-fluid img-thumbnail mt-4 mb-2 " style="width: 150px; z-index: 1"
                                 id="crop-img">
                             <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark"
@@ -57,22 +57,13 @@
 
                         <div class="row g-2">
 
-                            {{#each informationCourse.courses}}
-                            <div class="col mb-2">
-                                <a href="/course/course-detail"><img src="{{this.course_image}}" alt=""
-                                        class="img-course"></a>
-                            </div>
-                            {{/each}}
+
                             {{#each informationCourse.courses}}
                             <div class="col mb-2">
                                 <img src="../../../uploads/{{this.course_image}}" alt="" class="img-course">
                             </div>
                             {{/each}}
 
-                            <div class="col mb-2">
-                                <a href="/course/course-detail"><img src="{{informationCourse.course_image}}" alt=""
-                                        class="img-course"></a>
-                            </div>
                         </div>
 
                     </div>
