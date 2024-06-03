@@ -57,6 +57,8 @@ class ProfileController {
     store(req, res, next) {
 
         const profile = new Profile(req.body);
+
+
         profile.save()
 
             .then(() => {

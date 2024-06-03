@@ -1,5 +1,4 @@
-<form method="post" action="/store/stored_save">
-
+<form method="post" action="/store/stored_save" enctype="multipart/form-data">
     <div class="form-group">
         <label for="course_name">Course Name</label>
         <input type="text" class="form-control" name="course_name" id="course_name">
@@ -7,12 +6,14 @@
 
     <div class="form-group">
         <label for="course_image">Course Image</label>
-        <input type="text" class="form-control" name="course_image" id="course_image">
+        <input type="file" class="form-control" name="course_image" id="course_image">
     </div>
+
     <div class="form-group">
         <label for="description_course">Mô Tả Khóa Học</label>
         <input type="text" class="form-control" name="description_course" id="description_course">
     </div>
+
     <input type="hidden" value="{{user._id}}" name="owner_course">
 
     <button type="submit" class="btn btn-primary mt-4" id="registration-form">Thêm Khóa Học</button>

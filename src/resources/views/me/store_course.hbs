@@ -2,6 +2,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Course Name</th>
                 <th scope="col">Course Image</th>
                 <th scope="col">Description Course</th>
                 <th></th>
@@ -10,9 +11,10 @@
         <tbody>
             {{#each course}}
             <tr>
+                <td>{{this.course_name}}</td>
 
 
-                <td>{{this.course_image}}</td>
+                <td><img src="{{this.course_image}}" alt="" class="list-image-of-user"></td>
 
                 <td>{{this.description_course}}</td>
                 <td>

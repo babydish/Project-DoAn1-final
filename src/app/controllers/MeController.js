@@ -2,6 +2,10 @@ const Me = require('../models/Profile');
 const Course = require('../models/Courses');
 
 class MeController {
+    uploaded_courses(req, res, next) {
+        res.render('/uploads')
+
+    }
     // [POST] /store/course/:id/delete_course
     delete_course(req, res, next) {
         const idCourseDelete = req.params.id
@@ -40,7 +44,13 @@ class MeController {
 
     stored_save(req, res, next) {
         const user = req.session.user;
-        const courses = new Course(req.body);
+        const courseData = {
+            ...req.body,
+            course_image: req.file ? [req.file.filename] : [], // Thêm tên tệp hình ảnh vào mảng
+            owner_course: user._id // Giả định rằng thông tin người dùng đã được lưu trong session
+        };
+
+        const courses = new Course(courseData);
         courses.save()
             .then((course) => {
 

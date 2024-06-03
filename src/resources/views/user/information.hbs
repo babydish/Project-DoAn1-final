@@ -41,6 +41,12 @@
                                 <p class="font-italic mb-1">{{informationCourse.current_skills}}</p>
                             </div>
                         </div>
+                        <div class="mb-5">
+                            <p class="lead fw-normal mb-1">Skill Want To Learn</p>
+                            <div class="p-4" style="background-color: #f8f9fa;">
+                                <p class="font-italic mb-1">{{informationCourse.skill_want_to_learn}}</p>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <p class="lead fw-normal mb-0">Các Khóa Học Của {{informationCourse.name}}</p>
                             <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
@@ -49,6 +55,7 @@
 
                             {{#each informationCourse.courses}}
                             <div class="col mb-2">
+
                                 <a href="/course/course-detail"><img src="{{this.course_image}}" alt=""
                                         class="img-course"></a>
                             </div>

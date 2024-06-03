@@ -1,0 +1,558 @@
+{
+    "modelName": "Skillswap",
+    "collections": [
+        {
+            "collectionName": "Users",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "c1c3cb77-d5c3-4d24-b249-36d2f9c15e48",
+                    "primaryKey": true,
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "bd32c9dd-0e20-4a04-9407-448178b8e9be",
+                    "name": "name",
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "4a98a13a-c798-4417-8c4b-0666318eb954",
+                    "name": "email",
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "d7509737-a25c-4590-a9a4-4773ba1d97bd",
+                    "name": "password",
+                    "error": {}
+                },
+                {
+                    "name": "current_skills",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "6be4e98f-c441-4217-8f18-0fc47487f44e",
+                    "default": "ChÆ°a cÃ³ kÄ© nÄng",
+                    "error": {}
+                },
+                {
+                    "name": "skill_want_to_learn",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "715f2777-f299-46f0-9127-ed2738d686f4",
+                    "error": {}
+                },
+                {
+                    "name": "avatar",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "cf8f45ca-c910-489c-9351-c21a0fcbb778",
+                    "format": "uri",
+                    "error": {}
+                },
+                {
+                    "name": "courses",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "array",
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "type": "objectId",
+                            "GUID": "a2e70183-a0b6-4429-8a6f-b90f5f3c9b72",
+                            "arrayItem": true,
+                            "foreignCollection": "8402eaab-4a88-4891-aa30-69071e008c9e",
+                            "error": {}
+                        }
+                    ],
+                    "additionalItems": true,
+                    "GUID": "f6ead207-7dfd-4bd4-a571-8f22b5364e1d",
+                    "foreignCollection": "8402eaab-4a88-4891-aa30-69071e008c9e",
+                    "encrypt": false,
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "date",
+                    "primaryKey": false,
+                    "GUID": "90388a4c-8943-4d65-aba0-a7015455fe55",
+                    "now": true,
+                    "name": "timestamp",
+                    "error": {}
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "d6a72331-58eb-46fe-b102-17fc7c6618a7"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "5eb183e2-5b30-421e-a3fd-caa372989cd8"
+        },
+        {
+            "collectionName": "Message",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "741e37af-3065-4c2b-8de8-1241c1bd4af5",
+                    "primaryKey": true,
+                    "error": {}
+                },
+                {
+                    "name": "sender_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "cb35a147-8c80-43a6-9267-c9198e179862",
+                    "foreignCollection": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                    "error": {}
+                },
+                {
+                    "name": "receiver_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "1341100c-20fb-4bce-99cd-ae1e5cb8dd0a",
+                    "foreignCollection": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "8ecdac6c-4a8e-43e7-8d96-f13895318812",
+                    "name": "message",
+                    "error": {}
+                },
+                {
+                    "name": "timestamp",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "date",
+                    "primaryKey": false,
+                    "GUID": "66346c40-4e61-4ec6-aa4c-cb0f8c1d8290",
+                    "now": true,
+                    "error": {}
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "22188896-d524-4f81-914a-e8df39baf860"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "ba8f4074-1df2-4116-a344-e1dabe1794d0"
+        },
+        {
+            "collectionName": "Courses",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "7a698192-4fd4-4c58-be16-b294063516c5",
+                    "primaryKey": true,
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "d4ee1d13-f111-4472-9512-1b892c9ace48",
+                    "name": "course_name",
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "1dc554df-76bd-4fdb-8ecc-c47fc0273944",
+                    "name": "course_image",
+                    "format": "uri",
+                    "error": {}
+                },
+                {
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "17e7e591-6ba4-4be1-a660-71efa4ae533b",
+                    "name": "description_course",
+                    "error": {}
+                },
+                {
+                    "name": "owner_course",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "1dd5b538-f3fb-41d1-8f74-e4f3df2d0b75",
+                    "foreignCollection": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                    "error": {}
+                },
+                {
+                    "name": "timestamp",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "date",
+                    "primaryKey": false,
+                    "GUID": "869f1354-bdd7-45c4-94e5-833e11346a42",
+                    "now": true,
+                    "error": {}
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "8943309d-1637-4031-adc4-6c4b87f435f5"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "8402eaab-4a88-4891-aa30-69071e008c9e"
+        }
+    ],
+    "buckets": [],
+    "views": [],
+    "relationships": [],
+    "users": [],
+    "diagramViews": [
+        {
+            "GUID": "942fd6fb-38e0-4b5e-80c4-05d785dfda53",
+            "name": "SKILLSWAP",
+            "buckets": [],
+            "entities": [
+                "8402eaab-4a88-4891-aa30-69071e008c9e",
+                "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                "5eb183e2-5b30-421e-a3fd-caa372989cd8"
+            ]
+        },
+        {
+            "GUID": "a515ac4f-aca8-40c5-b17c-c3ba16b79a6d",
+            "name": "New Diagram View",
+            "buckets": [],
+            "entities": [
+                "8402eaab-4a88-4891-aa30-69071e008c9e",
+                "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                "5eb183e2-5b30-421e-a3fd-caa372989cd8"
+            ]
+        },
+        {
+            "GUID": "79ca2ddc-364f-4c87-8d86-35a0d58a88d8",
+            "name": "New Diagram View(1)",
+            "buckets": [],
+            "entities": [
+                "8402eaab-4a88-4891-aa30-69071e008c9e",
+                "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                "5eb183e2-5b30-421e-a3fd-caa372989cd8"
+            ]
+        }
+    ],
+    "idToNameHashTable": {
+        "5eb183e2-5b30-421e-a3fd-caa372989cd8": "Users",
+        "c1c3cb77-d5c3-4d24-b249-36d2f9c15e48": "_id",
+        "bd32c9dd-0e20-4a04-9407-448178b8e9be": "name",
+        "4a98a13a-c798-4417-8c4b-0666318eb954": "email",
+        "d7509737-a25c-4590-a9a4-4773ba1d97bd": "password",
+        "6be4e98f-c441-4217-8f18-0fc47487f44e": "current_skills",
+        "715f2777-f299-46f0-9127-ed2738d686f4": "skill_want_to_learn",
+        "cf8f45ca-c910-489c-9351-c21a0fcbb778": "avatar",
+        "f6ead207-7dfd-4bd4-a571-8f22b5364e1d": "courses",
+        "ba8f4074-1df2-4116-a344-e1dabe1794d0": "Message",
+        "741e37af-3065-4c2b-8de8-1241c1bd4af5": "_id",
+        "cb35a147-8c80-43a6-9267-c9198e179862": "sender_id",
+        "1341100c-20fb-4bce-99cd-ae1e5cb8dd0a": "receiver_id",
+        "8ecdac6c-4a8e-43e7-8d96-f13895318812": "message",
+        "66346c40-4e61-4ec6-aa4c-cb0f8c1d8290": "timestamp",
+        "8402eaab-4a88-4891-aa30-69071e008c9e": "Courses",
+        "7a698192-4fd4-4c58-be16-b294063516c5": "_id",
+        "d4ee1d13-f111-4472-9512-1b892c9ace48": "course_name",
+        "1dc554df-76bd-4fdb-8ecc-c47fc0273944": "course_image",
+        "17e7e591-6ba4-4be1-a660-71efa4ae533b": "description_course",
+        "1dd5b538-f3fb-41d1-8f74-e4f3df2d0b75": "owner_course",
+        "90388a4c-8943-4d65-aba0-a7015455fe55": "timestamp",
+        "869f1354-bdd7-45c4-94e5-833e11346a42": "timestamp",
+        "942fd6fb-38e0-4b5e-80c4-05d785dfda53": "SKILLSWAP",
+        "a515ac4f-aca8-40c5-b17c-c3ba16b79a6d": "New Diagram View",
+        "79ca2ddc-364f-4c87-8d86-35a0d58a88d8": "New Diagram View(1)"
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [],
+        "GUID": "c436b285-080d-41b2-93e1-c77d79091d1b"
+    },
+    "polyglotDefinitions": {
+        "type": "polyglotDefinitions",
+        "properties": [],
+        "GUID": "577fdbdd-baa2-48bf-b877-509ddbc07c98"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "e77e5435-cfa6-4f01-89f3-b53532e1326e"
+    },
+    "sources": [],
+    "decorativeSymbols": [],
+    "dbVersion": "v7.x",
+    "dbVendor": "MongoDB",
+    "appTarget": "MONGODB",
+    "creationTS": "2024-05-30T05:08:50.864Z",
+    "GUID": "f6b4abfb-23b3-410a-8198-53ac63eb728a",
+    "isLineageEnabled": false,
+    "hackoladeMeta": {
+        "validationErrors": {
+            "modelName": false
+        }
+    },
+    "lastModifTS": "2024-06-01T15:01:33.870Z",
+    "persistenceSchemaVersion": "7",
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginEngineVersion": "1.0.0"
+    },
+    "applicationInformation": {
+        "version": "7.4.5"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                        "x": 1082,
+                        "y": 1196,
+                        "width": 249,
+                        "height": 230,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                        "x": 1437,
+                        "y": 1192,
+                        "width": 188,
+                        "height": 123,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "8402eaab-4a88-4891-aa30-69071e008c9e",
+                        "x": 1086,
+                        "y": 1435.7999877929688,
+                        "width": 240,
+                        "height": 155,
+                        "color": {}
+                    }
+                ],
+                "erdDefinitions": {
+                    "erd": [],
+                    "rootPath": [],
+                    "entities": [],
+                    "decorativeSymbols": []
+                },
+                "buckets": [],
+                "collapsedNodes": [],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false,
+                "graphView": {
+                    "erd": [],
+                    "buckets": [],
+                    "decorativeSymbols": [],
+                    "forceLayout": true,
+                    "defaultLinkLength": 300
+                },
+                "diagramViews": [
+                    {
+                        "GUID": "942fd6fb-38e0-4b5e-80c4-05d785dfda53",
+                        "entities": [
+                            {
+                                "GUID": "8402eaab-4a88-4891-aa30-69071e008c9e",
+                                "x": 1300,
+                                "y": 1250,
+                                "width": 225,
+                                "height": 138,
+                                "color": {}
+                            },
+                            {
+                                "GUID": "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                                "x": 1450,
+                                "y": 1050,
+                                "width": 180,
+                                "height": 120,
+                                "color": {}
+                            },
+                            {
+                                "GUID": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                                "x": 1050,
+                                "y": 1450,
+                                "width": 225,
+                                "height": 210,
+                                "color": {}
+                            }
+                        ],
+                        "buckets": [],
+                        "graphView": {
+                            "erd": [],
+                            "buckets": [],
+                            "decorativeSymbols": [],
+                            "forceLayout": true,
+                            "defaultLinkLength": 300
+                        },
+                        "displayOptions": {}
+                    },
+                    {
+                        "GUID": "a515ac4f-aca8-40c5-b17c-c3ba16b79a6d",
+                        "entities": [
+                            {
+                                "GUID": "8402eaab-4a88-4891-aa30-69071e008c9e",
+                                "x": 1300,
+                                "y": 1250,
+                                "width": 225,
+                                "height": 138,
+                                "color": {}
+                            },
+                            {
+                                "GUID": "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                                "x": 1450,
+                                "y": 1050,
+                                "width": 180,
+                                "height": 120,
+                                "color": {}
+                            },
+                            {
+                                "GUID": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                                "x": 1050,
+                                "y": 1450,
+                                "width": 225,
+                                "height": 210,
+                                "color": {}
+                            }
+                        ],
+                        "buckets": [],
+                        "graphView": {
+                            "erd": [],
+                            "buckets": [],
+                            "decorativeSymbols": [],
+                            "forceLayout": true,
+                            "defaultLinkLength": 300
+                        },
+                        "displayOptions": {}
+                    },
+                    {
+                        "GUID": "79ca2ddc-364f-4c87-8d86-35a0d58a88d8",
+                        "entities": [
+                            {
+                                "GUID": "8402eaab-4a88-4891-aa30-69071e008c9e",
+                                "x": 1300,
+                                "y": 1250,
+                                "width": 225,
+                                "height": 138,
+                                "color": {}
+                            },
+                            {
+                                "GUID": "ba8f4074-1df2-4116-a344-e1dabe1794d0",
+                                "x": 1450,
+                                "y": 1050,
+                                "width": 180,
+                                "height": 120,
+                                "color": {}
+                            },
+                            {
+                                "GUID": "5eb183e2-5b30-421e-a3fd-caa372989cd8",
+                                "x": 1050,
+                                "y": 1450,
+                                "width": 225,
+                                "height": 210,
+                                "color": {}
+                            }
+                        ],
+                        "buckets": [],
+                        "graphView": {
+                            "erd": [],
+                            "buckets": [],
+                            "decorativeSymbols": [],
+                            "forceLayout": true,
+                            "defaultLinkLength": 300
+                        },
+                        "displayOptions": {}
+                    }
+                ],
+                "decorativeSymbols": [],
+                "nestedCollectionsLayout": "horizontal",
+                "options": [
+                    {
+                        "autoWidth": false,
+                        "autoHeight": false,
+                        "GUID": "8402eaab-4a88-4891-aa30-69071e008c9e"
+                    },
+                    {
+                        "autoWidth": false,
+                        "autoHeight": false,
+                        "GUID": "5eb183e2-5b30-421e-a3fd-caa372989cd8"
+                    }
+                ],
+                "relationshipUpdateDisabled": false
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [],
+            "shouldDistributeCollections": false
+        }
+    }
+}

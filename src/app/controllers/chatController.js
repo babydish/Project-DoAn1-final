@@ -77,6 +77,7 @@ class chatController {
                     });
                     Profile.findById(receiver_id).lean()
                         .then(receiver_id => {
+
                             res.render('chat/resultSearch', { sender, receiver_id, messages, isOwnMessage, numberResult, headerChat: true, keyword })
 
                         })
