@@ -5,8 +5,18 @@
 
     <div class="main">
         <div class="name">
-            <img src="{{receiver_id.avatar}}" alt="avatar of {{receiver_id.name}}" id="avartarChat">
+            <a href="/profile/information/{{receiver_id._id}}" style="text-decoration: none;"><img
+                    src="../../../uploads/{{receiver_id.avatar}}" alt="avatar of {{receiver_id.name}}"
+                    id="avartarChat"></a>
             <input type="text" id="name-input" class="name-input" value="{{receiver_id.name}}" maxlength="20">
+            {{#if onlineUser}}
+            <h6 class="name-input" style="color: rgb(12, 206, 54);">Online</h6>
+            {{else}}
+            <h6 class="name-input">Offline</h6>
+
+            {{/if}}
+
+
         </div>
         <ul class="message-container" id="message-container">
 
@@ -80,7 +90,9 @@
 
         socket.on('receiveMessage', (data) => { // nhan tin nhan tu nguoi dung khac
 
+
             if (data.receiver_id === senderId && data.sender_id === receiverId) {
+
                 addMessageToUI(false, data)
 
             }

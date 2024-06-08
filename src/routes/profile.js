@@ -7,7 +7,7 @@ const checkRegister = require('../services/checkRegister');
 const upload = require('../services/upload')
 
 router.get('/create', profileController.create);
-router.post('/store', upload.single('avatar'), profileController.store);
+router.post('/store', upload.single('avatar'), checkRegister.checkRegister, profileController.store);
 router.get('/information/:id', profileController.information)
 router.post('/:id/delete', profileController.delete)
 

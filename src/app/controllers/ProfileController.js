@@ -2,6 +2,7 @@ const Profile = require('../models/Profile');
 
 class ProfileController {
 
+    //[GET] /profile/information/:id
     information(req, res, next) {
         Profile.findById(req.params.id)
             .populate('courses') // populate 'courses' field with the actual course documents
@@ -9,7 +10,8 @@ class ProfileController {
             .then(informationCourse => {
                 const user = req.session.user;
                 res.locals.userData = user;
-                res.render('user/information', { informationCourse })
+                const numberCourse = informationCourse.courses.length;
+                res.render('user/information', { informationCourse, numberCourse })
             })
             .catch(error => (res.send(error)))
 
@@ -102,7 +104,9 @@ class ProfileController {
             .populate('courses') // populate 'courses' field with the actual course documents
             .lean() // convert the Mongoose document to a plain JavaScript object
             .then(informationCourse => {
-                res.render('profile/show', { informationCourse })
+                console.log(informationCourse)
+                const numberCourse = informationCourse.courses.length;
+                res.render('profile/show', { informationCourse, numberCourse })
             })
             .catch(next)
     }

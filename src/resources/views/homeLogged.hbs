@@ -1,4 +1,7 @@
 <section style="background-color: #eee;">
+    <div id="notification" class="notification">
+        Hệ Thống Đã Đề Xuất Những Người Dùng Có Kĩ Năng Và Khóa Học Phù Hợp Với Bạn
+    </div>
 
     <div class="container py-5">
         <div class="row">
@@ -6,7 +9,7 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="../../uploads/{{this.avatar}}" alt="avatar" class="rounded-circle img-fluid"
+                        <img src="../../uploads/{{this.avatar}}" alt="avatar" class="rounded-circle img-fluid avt"
                             style="width: 150px;">
                         <h5 class="my-3"></h5>
                         <p class="text-muted mb-1">{{this.name}}</p>
@@ -35,14 +38,12 @@
                                     <a href="#"><i class="fa fa-bell" style="font-size:23px;color:blue"></i></a>
                                     <p class="mb-0">{{this.current_skills}}</p>
                                 </li>
+                                {{#each this.courses}}
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                     <a href="#"><i class="fa fa-tasks" style=" font-size:23px;color:blue"></i></a>
-                                    <p class="mb-0">1 năm giảng dạy tại trung tâm</p>
+                                    <p class="mb-0">{{this.course_name}}</p>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <a href="#"><i class="fa fa-briefcase" style="font-size:23px;color:blue"></i></a>
-                                    <p class="mb-0">Thạc Sĩ Khoa Học Máy Tính HUMG</p>
-                                </li>
+                                {{/each}}
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                     <a href="#"><i class="fa fa-envelope" style="font-size:23px;color:red"></i></a>
                                     <p class="mb-0">{{this.email}}</p>
@@ -112,3 +113,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    function showNotification() {
+        var notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(function () {
+            notification.style.display = 'none';
+        }, 4000);
+    }
+
+    // Gọi hàm showNotification để hiển thị thông báo
+    showNotification();
+</script>

@@ -8,9 +8,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 smb-lg-0">
-                <li class="nav-item">
-                    <h5 class="client-total" id="client-total" style="color: azure;">Online Total: </h3>
-                </li>
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -18,9 +16,16 @@
                         Chức Năng
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/">Home</a></li>
                         <li><a class="dropdown-item" href="/chat/listMessenger">Đoạn Chat</a></li>
                         <li><a class="dropdown-item" href="">Goi Video</a></li>
                         <li><a class="dropdown-item" href="">Xem Profile</a></li>
+                        {{#if userData.role }}
+                        <li>
+                            <h5 class="client-total dropdown-item" id="client-total">Online Total:
+                            </h5>
+                        </li>
+                        {{/if}}
 
                     </ul>
                 </li>

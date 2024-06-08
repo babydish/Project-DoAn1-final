@@ -13,9 +13,12 @@ class chatController {
             .populate('receiver_id')
             .lean()
             .then((sentMessages) => {
+
                 sentMessages.forEach((message) => {
+
                     if (message.receiver_id && message.receiver_id._id) {
                         sentUsers.set(message.receiver_id._id.toString(), message.receiver_id);
+
                     }
                 });
 
@@ -40,12 +43,14 @@ class chatController {
                         const uniqueUsers = Array.from(displayedUsers.values());
                         const sentUserList = Array.from(sentUsers.values());
 
+
                         // Render both sentUsers and uniqueUsers
                         res.render('chat/listMessenger', { sentUsers: sentUserList, uniqueUsers });
                     })
                     .catch(next);
             })
             .catch(next);
+
     }
 
 
@@ -115,7 +120,11 @@ class chatController {
                     });
                     Profile.findById(receiver_id).lean()
                         .then(receiver_id => {
-                            res.render('chat/chat', { sender, receiver_id, messages, isOwnMessage, headerChat: true })
+
+                            if (receiver_id.is_online == 1) {
+                                var onlineUser = true;
+                            }
+                            res.render('chat/chat', { sender, receiver_id, messages, isOwnMessage, headerChat: true, onlineUser })
 
                         })
                 })

@@ -1,0 +1,30 @@
+<div class="mt-4">
+    <form method="post" action="/store/course_edit/edited/{{information_id._id}}" enctype="multipart/form-data">
+
+        <div class=" form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{information_id.course_name}}">
+
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="description_course"> description_course</label>
+            <input type="text" class="form-control" id="description_course" name="description_course"
+                value="{{information_id.description_course}}">
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="course_image">course_image</label>
+            <input type="file" class="form-control" id="course_image" name="course_image">
+
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Edit</button>
+
+    </form>
+</div>

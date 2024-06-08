@@ -4,7 +4,8 @@ const router = express.Router();
 const meController = require('../app/controllers/MeController');
 const upload = require('../services/upload')
 
-
+router.get('/course/:id/edit', meController.edit)
+router.post('/course_edit/edited/:id', upload.single('course_image'), meController.edited)
 router.get('/id_delete', meController.id_delete);
 router.post('/course/:id/delete', meController.delete_course)
 router.get('/create', meController.stored_create);

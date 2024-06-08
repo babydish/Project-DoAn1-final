@@ -2,6 +2,33 @@ const Me = require('../models/Profile');
 const Course = require('../models/Courses');
 
 class MeController {
+    edited(req, res, next) {
+        const courseData = {
+            ...req.body,
+            course_image: req.file ? req.file.filename : '', // Thêm tên tệp hình ảnh vào mảng
+
+        };
+        Course.updateOne({ _id: req.params.id }, courseData).lean()
+            .then(() => {
+                res.redirect('/store/id_delete')
+            })
+            .catch(err => {
+                console.log('Chua update duoc anh: ', err)
+            })
+
+
+    }
+
+    edit(req, res, next) {
+        const user = req.session.user;
+        res.locals.userData = user;
+        Course.findById(req.params.id).lean()
+            .then(information_id => {
+                res.render('me/edit_course', { information_id })
+            })
+
+
+    }
 
     // [POST] /store/course/:id/delete_course
     delete_course(req, res, next) {
