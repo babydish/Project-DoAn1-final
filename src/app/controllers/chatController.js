@@ -1,5 +1,6 @@
 const Chat = require('../models/Message');
-const Profile = require('../models/Profile')
+const Profile = require('../models/Profile');
+
 
 class chatController {
     listMessenger(req, res, next) {

@@ -34,12 +34,20 @@
 
         </ul>
         <form action="" class="message-form" id="message-form">
+
+            <img src="../../../uploads/{{sender.avatar}}" alt="avatar" style="width: 40px; height: 40px;" id="avt">
+
+
+
             <input type="text" name="message" id="message-input" class="message-input">
             <div class="v-divider"></div>
+
             <button type="submit" class="send-button">
-                send <span></span>
+                <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a> <span></span>
             </button>
-        </form>
+
+    </div>
+    </form>
     </div>
     <br>
     <script src="/socket.io/socket.io.js"></script>

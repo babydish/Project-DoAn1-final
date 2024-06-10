@@ -5,7 +5,7 @@
 
     <div class="main">
         <div class="name">
-            <img src="{{receiver_id.avatar}}" alt="avatar of {{receiver_id.name}}" id="avartarChat">
+            <img src="../../../uploads/{{receiver_id.avatar}}" alt="avatar of {{receiver_id.name}}" id="avartarChat">
             <input type="text" id="name-input" class="name-input" value="{{receiver_id.name}}" maxlength="20">
         </div>
         <ul class="message-container" id="message-container">
@@ -17,6 +17,7 @@
                 <li class="{{#if isOwnMessage}}message-right{{else}}message-left{{/if}}" style="color: red">
                     <p class="message">
                         {{this.message}}
+
                         <span>{{this.timestamp}}</span>
                     </p>
                 </li>

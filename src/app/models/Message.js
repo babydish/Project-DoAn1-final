@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-
+const moment = require('moment-timezone');
 const MessageSchema = new mongoose.Schema({
     message: { type: String },
     sender_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     receiver_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     timestamp: {
         type: Date,
-        default: Date.now()
+        default: () => moment().tz('Asia/Ho_Chi_Minh').toDate()
     }
 
 });

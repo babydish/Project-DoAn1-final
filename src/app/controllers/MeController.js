@@ -105,7 +105,9 @@ class MeController {
     }
 
     stored_information(req, res, next) {
-        Me.find({}).lean()
+        Me.find({})
+            .populate('courses')
+            .lean()
             .then(me => {
                 const user = req.session.user;
                 res.locals.userData = user;

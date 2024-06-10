@@ -95,38 +95,69 @@ class SiteController {
         }
 
     }
-
-
     index(req, res, next) {
         let check = false;
         const userData = req.session.user;
+        const page = parseInt(req.query.page) || 1; // Trang hiện tại, mặc định là 1
+        const limit = 5; // Số lượng người dùng hiển thị mỗi trang
+        const skip = (page - 1) * limit; // Số lượng người dùng bỏ qua
+
         Profile.find()
             .populate({
                 path: 'courses',
                 options: { limit: 2 } // Giới hạn số lượng khóa học
             })
+            .skip(skip)
+            .limit(limit)
             .lean()
             .then((information) => {
+                Profile.countDocuments().then(total => {
+                    const totalPages = Math.ceil(total / limit);
+                    let pages = [];
+                    for (let i = 1; i <= totalPages; i++) {
+                        pages.push({
+                            number: i,
+                            isCurrentPage: i === page
+                        });
+                    }
 
+                    let hasNoCourses = false;
 
-
-                if (userData !== undefined) {
                     information.forEach(infor => {
-
-                        if (infor._id.toString() === userData._id.toString()) {
-                            infor.check = true;
+                        if (userData !== undefined) {
+                            if (infor._id.toString() === userData._id.toString()) {
+                                infor.check = true;
+                            }
                         }
+                        infor.hasNoCourses = infor.courses.length === 0; // check số lượng khóa học của mỗi người để ghi chú những ai chưa có khóa học
+
                     });
-                }
 
+                    const hasPreviousPage = page > 1;
+                    const hasNextPage = page < totalPages;
+                    const previousPage = page - 1;
+                    const nextPage = page + 1;
 
-                res.render('home', { information, userData, check });
+                    res.render('home', {
+                        information,
+                        userData,
+                        check,
+                        hasNoCourses,
+                        totalPages,
+                        currentPage: page,
+                        pages,
+                        hasPreviousPage,
+                        hasNextPage,
+                        previousPage,
+                        nextPage
+                    });
+                });
             })
             .catch(err => {
                 next(err);
             });
-
     }
+
 
 }
 module.exports = new SiteController();
