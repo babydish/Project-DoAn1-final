@@ -11,7 +11,7 @@ class UserController {
             } else {
                 Profile.findByIdAndUpdate(user._id, { is_online: 0 }).lean()
                     .then(() => {
-                        res.redirect('/'); // Chuyển hướng người dùng sau khi session đã bị hủy
+                        res.redirect('/');
                     })
 
             }

@@ -11,23 +11,22 @@ var storage = multer.diskStorage({
     }
 
 })
-
 var upload = multer({
     storage: storage,
     fileFilter: function (req, file, callback) {
-        if (
-            file.mimetype == "image/jpeg" ||
-            file.mimetype == "image/png"
-        ) {
-            callback(null, true)
+        const allowedTypes = ["image/jpeg", "image/png", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+
+        if (allowedTypes.includes(file.mimetype)) {
+            callback(null, true);
         } else {
-            console.log('only jpg & png file')
-            callback(null, false)
+            console.log('Only jpg, png, and .doc files are allowed');
+            callback(null, false);
         }
     },
     limits: {
-        fileSize: 1024 * 1024 * 2
+        fileSize: 1024 * 1024 * 2 // 2MB limit
     }
-})
+});
+
 
 module.exports = upload

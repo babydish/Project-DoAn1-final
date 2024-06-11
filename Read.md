@@ -43,3 +43,7 @@ api (url): application programing interface
 -> cổng giao tiếp giữa các phần mềm
 
 // backend -> api -> fectch -> json/xml
+
+
+upload file ảnh ở chat: 
+//Để nhận được req.file trên máy chủ, biểu mẫu HTML cần có enctype="multipart/form-data" hoặc sử dụng JavaScript để gửi FormData.

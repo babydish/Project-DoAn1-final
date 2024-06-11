@@ -5,8 +5,8 @@ class ProfileController {
     //[GET] /profile/information/:id
     information(req, res, next) {
         Profile.findById(req.params.id)
-            .populate('courses') // populate 'courses' field with the actual course documents
-            .lean() // convert the Mongoose document to a plain JavaScript object
+            .populate('courses')
+            .lean()
             .then(informationCourse => {
                 const user = req.session.user;
                 res.locals.userData = user;
@@ -71,7 +71,7 @@ class ProfileController {
         };
 
 
-        console.log(profileData)
+
         const profile = new Profile(profileData);
 
 

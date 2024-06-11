@@ -21,15 +21,21 @@
         <ul class="message-container" id="message-container">
 
             {{#each messages}}
-
-            <p class="message">
-                <li class="{{#if isOwnMessage}}message-right{{else}}message-left{{/if}}">
-                    <p class="message">
-                        {{this.message}}
-                        <span>{{this.timestamp}}</span>
-                    </p>
-                </li>
-            </p>
+            <li class="{{#if isOwnMessage}}message-right{{else}}message-left{{/if}}">
+                {{#if file}}
+                <p class="message">{{this.message}}<span>{{this.timestamp}}</span></p>
+                {{else if fileDocx}}
+                <p class="message">
+                    <a href="../../..{{this.filePath}}" target="_blank">{{this.fileName}}</a>
+                    <span>{{this.timestamp}}</span>
+                </p>
+                {{else}}
+                <p class="message">
+                    <img src="../../..{{this.filePath}}" alt="" id="img-send">
+                    <span>{{this.timestamp}}</span>
+                </p>
+                {{/if}}
+            </li>
             {{/each}}
 
         </ul>
@@ -41,13 +47,15 @@
 
             <input type="text" name="message" id="message-input" class="message-input">
             <div class="v-divider"></div>
+            <input type="file" id="file-input" class="file-input form-control">
+            <div class="v-divider"></div>
 
             <button type="submit" class="send-button">
                 <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a> <span></span>
             </button>
-
+        </form>
     </div>
-    </form>
+
     </div>
     <br>
     <script src="/socket.io/socket.io.js"></script>
@@ -64,6 +72,7 @@
         const nameSender = document.getElementById('name-sender');
         const messageForm = document.getElementById('message-form');
         const messageInput = document.getElementById('message-input');
+        const fileInput = document.getElementById('file-input');
         scrollBottom();
 
 
@@ -71,14 +80,27 @@
 
         messageForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            sendMessage();
+            if (!isValidMessage()) {
+                alert('Please enter a message or select a file to send.');
+                return;
+            }
+            const file = fileInput.files[0];
 
-        })
-        socket.on('clients-total', (data) => {
+            if (file) {
+                sendFile(); // Nếu có file thì gửi file
+            } else {
+                sendMessage(); // Nếu không có file thì gửi tin nhắn
+            }
+        });
+        // socket.on('clients-total', (data) => {
 
-            clientsTotal.innerText = `Online Client Total: ${data}`
+        // clientsTotal.innerText = `Online Client Total: ${data}`
 
-        })
+        //})
+        function isValidMessage() {
+            // Kiểm tra nếu người dùng chưa nhập nội dung tin nhắn và không chọn file
+            return messageInput.value !== '' || fileInput.files.length > 0;
+        }
 
         function sendMessage() {
             const data = {
@@ -94,6 +116,49 @@
 
 
         }
+        function sendFile() {
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('name', nameSender.value);
+            formData.append('receiver_id', receiverId);
+            formData.append('sender_id', senderId);
+
+            fetch('/chat/upload', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.filePath) {
+                        const fileExtension = data.filePath.split('.').pop().toLowerCase();
+                        let messageContent;
+
+                        // Kiểm tra phần mở rộng của tệp tin
+                        if (fileExtension === 'docx') {
+                            // Nếu tệp tin là DOCX, tạo thông điệp với liên kết tải xuống
+                            messageContent = `<a href="${data.filePath}" id="file-send" download>${data.fileName}</a>`;
+                        } else {
+                            // Nếu tệp tin là hình ảnh, tạo thông điệp với hình ảnh
+                            messageContent = `<img src="${data.filePath}" id="img-send">`;
+                        }
+
+                        const messageData = {
+                            name: nameSender.value,
+                            message: messageContent,
+                            receiver_id: receiverId,
+                            sender_id: senderId
+                        };
+
+                        addMessageToUI(true, messageData);
+                    }
+                })
+                .catch(err => console.error(err));
+
+            fileInput.value = ''; // Reset file input
+        }
+
 
 
         socket.on('receiveMessage', (data) => { // nhan tin nhan tu nguoi dung khac
@@ -110,17 +175,21 @@
         })
 
         function addMessageToUI(isOwnMessage, data) {
-            const element = `
-            <li class="${isOwnMessage ? "message-right" : "message-left"}">
-                <p class="message">
-                    ${data.message}
-                    <span>${data.name} : ${moment(data.dateTime).fromNow()}</span>
-                </p>
-            </li>`;
+            const messageHTML = isOwnMessage ?
+                `<li class="message-right">
+            <p class="message">${data.message}</p>
+            <span>${data.name} : ${moment(data.dateTime).fromNow()}</span>
+        </li>` :
+                `<li class="message-left">
+            <p class="message">${data.message}</p>
+            <span>${data.name} : ${moment(data.dateTime).fromNow()}</span>
+        </li>`;
 
-            messageContainer.innerHTML += element;
+            messageContainer.innerHTML += messageHTML;
             scrollBottom();
         }
+
+
         function scrollBottom() {
             messageContainer.scrollTo(0, messageContainer.scrollHeight)
         }

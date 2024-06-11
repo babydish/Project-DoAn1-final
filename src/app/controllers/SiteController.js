@@ -81,14 +81,17 @@ class SiteController {
                         .populate('courses')
                         .lean()
                         .then(recommendCourses => {
+                            let hasNoCourses = false;
                             recommendCourses.forEach(infor => {
 
                                 if (infor._id.toString() === userData._id.toString()) {
                                     infor.check = true;
                                 }
+                                infor.hasNoCourses = infor.courses.length === 0;
                             });
 
-                            res.render('homeLogged', { recommendCourses, userData, check })
+
+                            res.render('homeLogged', { recommendCourses, userData, check, hasNoCourses })
                         })
                 })
 
