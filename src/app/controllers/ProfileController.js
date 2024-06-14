@@ -97,18 +97,23 @@ class ProfileController {
 
     // [GET] profile/show
     show(req, res, next) {
-        const user = req.session.user;
-        res.locals.userData = user;
+        if (req.session.user) {
+            const user = req.session.user;
+            res.locals.userData = user;
 
-        Profile.findById(user._id)
-            .populate('courses') // populate 'courses' field with the actual course documents
-            .lean() // convert the Mongoose document to a plain JavaScript object
-            .then(informationCourse => {
-                console.log(informationCourse)
-                const numberCourse = informationCourse.courses.length;
-                res.render('profile/show', { informationCourse, numberCourse })
-            })
-            .catch(next)
+            Profile.findById(user._id)
+                .populate('courses') // populate 'courses' field with the actual course documents
+                .lean() // convert the Mongoose document to a plain JavaScript object
+                .then(informationCourse => {
+                    const numberCourse = informationCourse.courses.length;
+                    res.render('profile/show', { informationCourse, numberCourse })
+                })
+                .catch(next)
+
+        } else {
+            res.send('Ban chua dang nhap')
+        }
+
     }
 }
 
