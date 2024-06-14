@@ -92,11 +92,11 @@
                 sendMessage(); // Nếu không có file thì gửi tin nhắn
             }
         });
-        // socket.on('clients-total', (data) => {
+        socket.on('clients-total', (data) => {
 
-        // clientsTotal.innerText = `Online Client Total: ${data}`
+            clientsTotal.innerText = `Online Client Total: ${data}`
 
-        // })
+        })
         function isValidMessage() {
             // Kiểm tra nếu người dùng chưa nhập nội dung tin nhắn và không chọn file
             return messageInput.value !== '' || fileInput.files.length > 0;
@@ -152,7 +152,7 @@
                         };
                         socket.emit('message', messageData);
                         addMessageToUI(true, messageData);
-                         
+
                     }
                 })
                 .catch(err => console.error(err));
